@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Auth;
+namespace Webup\LaravelHeliumCore\Traits;
 
 trait RedirectsUsers
 {

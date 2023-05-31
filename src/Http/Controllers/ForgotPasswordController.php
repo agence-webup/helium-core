@@ -1,21 +1,11 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Http\Controllers;
+namespace App\Http\Controllers\Helium;
 
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Routing\Controller;
+use Webup\LaravelHeliumCore\Traits\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
-
-    public function showLoginForm()
-    {
-        return view('helium-core::pages.login');
-    }
-
-    public function redirectPath()
-    {
-        return route('helium::home');
-    }
 }

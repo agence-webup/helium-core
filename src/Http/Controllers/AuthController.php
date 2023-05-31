@@ -1,9 +1,9 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Http\Controllers;
+namespace App\Http\Controllers\Helium;
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Routing\Controller;
+use Webup\LaravelHeliumCore\Traits\AuthenticatesUsers;
 
 class AuthController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Auth;
+namespace Webup\LaravelHeliumCore\Traits;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
@@ -39,8 +39,8 @@ trait RegistersUsers
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath());
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     /**

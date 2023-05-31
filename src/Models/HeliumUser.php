@@ -1,6 +1,6 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Models;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User;
 

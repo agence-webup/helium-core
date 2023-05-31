@@ -1,9 +1,9 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Http\Controllers;
+namespace App\Http\Controllers\Helium;
 
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Routing\Controller;
+use Webup\LaravelHeliumCore\Traits\ResetsPasswords;
 
 class ResetPasswordController extends Controller
 {
