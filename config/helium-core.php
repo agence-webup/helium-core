@@ -1,6 +1,11 @@
 <?php
 
 // config for Webup/LaravelHeliumCore
-return [
 
+use Webup\LaravelHeliumCore\Enums\Feature;
+
+return [
+    'features' => [
+        Feature::AUTH,
+    ]
 ];
