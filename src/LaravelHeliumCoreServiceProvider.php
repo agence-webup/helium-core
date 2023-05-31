@@ -23,16 +23,16 @@ class LaravelHeliumCoreServiceProvider extends PackageServiceProvider
             ->hasMigration('create_helium_users_table')
             ->hasCommand(LaravelHeliumCoreCommand::class);
 
-        $this->publishes([__DIR__ . '/routes/helium.php' => base_path('routes/helium.php')], $package->shortName() . '-routes');
-        $this->publishes([__DIR__ . '/Http/Controllers/AuthController.php' => base_path('App/Http/Controllers/Helium/AuthController.php')]);
+        $this->publishes([__DIR__.'/routes/helium.php' => base_path('routes/helium.php')], $package->shortName().'-routes');
+        $this->publishes([__DIR__.'/Http/Controllers/AuthController.php' => base_path('App/Http/Controllers/Helium/AuthController.php')]);
 
         // Setup guard and provider for admin_users.
-        $guards = $this->app['config']->get("auth.guards", []);
-        $this->app['config']->set("auth.guards", array_merge([
+        $guards = $this->app['config']->get('auth.guards', []);
+        $this->app['config']->set('auth.guards', array_merge([
             'helium' => ['driver' => 'session', 'provider' => 'helium_users'],
         ], $guards));
-        $providers = $this->app['config']->get("auth.providers", []);
-        $this->app['config']->set("auth.providers", array_merge([
+        $providers = $this->app['config']->get('auth.providers', []);
+        $this->app['config']->set('auth.providers', array_merge([
             'helium_users' => ['driver' => 'eloquent', 'model' => HeliumUser::class],
         ], $providers));
     }
