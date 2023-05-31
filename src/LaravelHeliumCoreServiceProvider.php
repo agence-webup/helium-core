@@ -18,21 +18,21 @@ class LaravelHeliumCoreServiceProvider extends PackageServiceProvider
             ->hasMigration('create_helium_users_table')
             ->hasCommand(LaravelHeliumCoreCommand::class);
 
-        $this->publishes([__DIR__ . '/../routes/helium.php' => base_path('routes/helium.php')], $package->shortName() . '-routes');
+        $this->publishes([__DIR__.'/../routes/helium.php' => base_path('routes/helium.php')], $package->shortName().'-routes');
 
         if (file_exists(base_path('routes/helium.php'))) {
-            $this->loadRoutesFrom(base_path('routes') . '/helium.php');
+            $this->loadRoutesFrom(base_path('routes').'/helium.php');
         }
 
         $this->publishes([
-            __DIR__ . '/Http/Controllers/AuthController.php' => base_path('App/Http/Controllers/Helium/AuthController.php'),
-            __DIR__ . '/Http/Controllers/ForgotPasswordController.php' => base_path('App/Http/Controllers/Helium/ForgotPasswordController.php'),
-            __DIR__ . '/Http/Controllers/ResetPasswordController.php' => base_path('App/Http/Controllers/Helium/ResetPasswordController.php'),
-        ], $package->shortName() . '-controllers');
+            __DIR__.'/Http/Controllers/AuthController.php' => base_path('App/Http/Controllers/Helium/AuthController.php'),
+            __DIR__.'/Http/Controllers/ForgotPasswordController.php' => base_path('App/Http/Controllers/Helium/ForgotPasswordController.php'),
+            __DIR__.'/Http/Controllers/ResetPasswordController.php' => base_path('App/Http/Controllers/Helium/ResetPasswordController.php'),
+        ], $package->shortName().'-controllers');
 
         $this->publishes([
-            __DIR__ . '/Models/HeliumUser.php' => base_path('App/Http/Models/HeliumUser.php'),
-        ], $package->shortName() . '-models');
+            __DIR__.'/Models/HeliumUser.php' => base_path('App/Http/Models/HeliumUser.php'),
+        ], $package->shortName().'-models');
 
         // Setup guard and provider for admin_users.
         $guards = $this->app['config']->get('auth.guards', []);
