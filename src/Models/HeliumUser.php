@@ -9,4 +9,6 @@ class HeliumUser extends User
     protected array $hidden = [
         'password',
     ];
+
+    protected $fillable = ['email', 'password'];
 }

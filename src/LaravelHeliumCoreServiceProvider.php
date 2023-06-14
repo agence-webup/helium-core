@@ -15,7 +15,10 @@ class LaravelHeliumCoreServiceProvider extends PackageServiceProvider
             ->name('laravel-helium-core')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_helium_users_table')
+            ->hasMigrations(
+                'create_helium_users_table',
+                'create_helium_default_user',
+            )
             ->hasCommand(LaravelHeliumCoreCommand::class);
 
         $this->publishes([__DIR__.'/../routes/helium.php' => base_path('routes/helium.php')], $package->shortName().'-routes');
