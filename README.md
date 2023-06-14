@@ -22,17 +22,15 @@ You can install the package via composer:
 composer require webup/laravel-helium-core
 ```
 
-You can publish and run the migrations with:
+You can publish content with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-helium-core-migrations"
+php artisan vendor:publish --tag="helium-core-migrations"
 php artisan migrate
-```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-helium-core-config"
+php artisan vendor:publish --tag="helium-core-views"
+php artisan vendor:publish --tag="helium-core-config"
+php artisan vendor:publish --tag="helium-core-models"
 ```
 
 This is the contents of the published config file:
@@ -40,12 +38,6 @@ This is the contents of the published config file:
 ```php
 return [
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-helium-core-views"
 ```
 
 ## Testing
