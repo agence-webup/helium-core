@@ -13,15 +13,15 @@ class Config extends Step
         $app_config_path = base_path('config/helium-core.php');
         $app_config = file_exists($app_config_path)
             ? file_get_contents($app_config_path)
-            : file_get_contents(__DIR__ . '/../../../config/helium-core.php');
+            : file_get_contents(__DIR__.'/../../../config/helium-core.php');
 
-        $config = file_get_contents(__DIR__ . '/../../../config/' . $this->filename);
+        $config = file_get_contents(__DIR__.'/../../../config/'.$this->filename);
 
-        $config .= "\n\n" . $this->marker;
+        $config .= "\n\n".$this->marker;
 
         $app_config = str_replace($this->marker, $config, $app_config);
 
-        $command->comment('Adding config to ' . $app_config_path);
+        $command->comment('Adding config to '.$app_config_path);
         file_put_contents($app_config_path, $app_config);
     }
 

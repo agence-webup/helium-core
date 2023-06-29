@@ -3,7 +3,6 @@
 namespace Webup\LaravelHeliumCore\Commands;
 
 use Illuminate\Foundation\Console\VendorPublishCommand;
-use Webup\LaravelHeliumCore\Features\Feature;
 use Webup\LaravelHeliumCore\Features\UserFeature;
 
 class Publish extends VendorPublishCommand
@@ -32,7 +31,7 @@ class Publish extends VendorPublishCommand
 
         foreach ($features as $feature) {
             $feature::make()->handle($this);
-            $this->info('Feature ' . $choice . ' published');
+            $this->info('Feature '.$choice.' published');
         }
 
         return self::SUCCESS;
@@ -46,7 +45,6 @@ class Publish extends VendorPublishCommand
     // private function processMenu()
     // {
     //     $this->info("Étape : Menu");
-
 
     //     $this->menuIcon = $this->askWithCompletion("Icône à utiliser pour le menu : ( https://feathericons.com/ )", FeatherIcons::ICONS, "help-circle");
 

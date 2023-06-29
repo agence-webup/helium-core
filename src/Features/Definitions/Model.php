@@ -11,8 +11,8 @@ class Model extends Step
     public function handle(Publish $command): void
     {
         $command->publish(
-            __DIR__ . '/../../Models/' . $this->filename,
-            base_path('app/Models/Helium/' . $this->filename)
+            __DIR__.'/../../Models/'.$this->filename,
+            base_path('app/Models/Helium/'.$this->filename)
         );
     }
 

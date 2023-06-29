@@ -12,8 +12,8 @@ class Migration extends Step
     public function handle(Publish $command): void
     {
         $command->publish(
-            __DIR__ . '/../../../database/migrations/' . $this->filename,
-            base_path('database/migrations/' . Carbon::now()->addSecond()->format('Y_m_d_His') . '_' . $this->filename)
+            __DIR__.'/../../../database/migrations/'.$this->filename,
+            base_path('database/migrations/'.Carbon::now()->addSecond()->format('Y_m_d_His').'_'.$this->filename)
         );
     }
 

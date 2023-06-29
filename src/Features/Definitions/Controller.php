@@ -11,8 +11,8 @@ class Controller extends Step
     public function handle(Publish $command): void
     {
         $command->publish(
-            __DIR__ . '/../../Http/Controllers/' . $this->filename,
-            base_path('app/Http/Controllers/Helium/' . $this->filename)
+            __DIR__.'/../../Http/Controllers/'.$this->filename,
+            base_path('app/Http/Controllers/Helium/'.$this->filename)
         );
     }
 

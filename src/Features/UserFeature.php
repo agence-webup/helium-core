@@ -35,10 +35,10 @@ class UserFeature extends Feature
             ])
             ->additionalSteps([
                 function (Publish $publish) {
-                    $publish->confirm("
+                    $publish->confirm('
                         Do not forget to add the provider and the guard to your config/auth.php file,
                         as described in the README.md file. Press enter to continue.
-                    ");
+                    ');
                 },
             ]);
     }

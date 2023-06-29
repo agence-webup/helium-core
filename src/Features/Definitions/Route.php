@@ -13,15 +13,15 @@ class Route extends Step
         $app_route_path = base_path('routes/helium.php');
         $app_route = file_exists($app_route_path)
             ? file_get_contents($app_route_path)
-            : file_get_contents(__DIR__ . '/../../../routes/helium.php');
+            : file_get_contents(__DIR__.'/../../../routes/helium.php');
 
-        $route = file_get_contents(__DIR__ . '/../../../routes/' . $this->filename);
+        $route = file_get_contents(__DIR__.'/../../../routes/'.$this->filename);
 
-        $route .= "\n\n" . $this->marker;
+        $route .= "\n\n".$this->marker;
 
         $app_route = str_replace($this->marker, $route, $app_route);
 
-        $command->comment('Adding routes to ' . $app_route_path);
+        $command->comment('Adding routes to '.$app_route_path);
         file_put_contents($app_route_path, $app_route);
     }
 
