@@ -22,15 +22,10 @@ You can install the package via composer:
 composer require webup/laravel-helium-core
 ```
 
-You can publish content with:
+You can publish features as you go with:
 
 ```bash
-php artisan vendor:publish --tag="helium-core-migrations"
-php artisan migrate
-
-php artisan vendor:publish --tag="helium-core-views"
-php artisan vendor:publish --tag="helium-core-config"
-php artisan vendor:publish --tag="helium-core-models"
+php artisan helium:publish
 ```
 
 This is the contents of the published config file:
@@ -40,6 +35,38 @@ return [
 ];
 ```
 
+## Features
+
+### User
+
+```bash
+php artisan helium:migrate
+> User
+```
+
+Don't forget to add the guard and provider to `config/auth.php`:
+```php
+<?php
+
+return [
+    ...
+    'guards' => [
+        ...
+        'helium' => [
+            'driver' => 'session',
+            'provider' => 'helium_users',
+        ],
+    ],
+
+    'providers' => [
+        ...
+        'helium_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Helium\HeliumUser::class,
+        ],
+    ],
+];
+```
 ## Testing
 
 ```bash

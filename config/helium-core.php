@@ -5,7 +5,5 @@
 use Webup\LaravelHeliumCore\Enums\Feature;
 
 return [
-    'features' => [
-        Feature::AUTH,
-    ],
+    // * Helium publish marker - Do not remove this line *
 ];
