@@ -22,7 +22,7 @@ class UserFeature extends Feature
             ->routes(Route::make()->filename('users.php'))
             ->resources(
                 Resource::make()
-                    ->pages('users')
+                    ->pages('user')
             )
             ->models([
                 Model::make()->filename('HeliumUser.php'),
@@ -35,10 +35,7 @@ class UserFeature extends Feature
             ])
             ->additionalSteps([
                 function (Publish $publish) {
-                    $publish->confirm('
-                        Do not forget to add the provider and the guard to your config/auth.php file,
-                        as described in the README.md file. Press enter to continue.
-                    ');
+                    $publish->confirm("Do not forget to add the provider and the guard to your config/auth.php file,\nas described in the README.md file.\nPress enter to continue.");
                 },
             ]);
     }
