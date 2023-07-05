@@ -17,6 +17,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = HeliumUser::findOrFail($id);
+
         return view('helium-core::pages.user.show', compact('user'));
     }
 
@@ -28,6 +29,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = HeliumUser::findOrFail($id);
+
         return view('helium-core::pages.user.edit', compact('user'));
     }
 

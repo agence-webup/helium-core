@@ -18,43 +18,43 @@ class Resource extends Step
 
     public function handle(Publish $command): void
     {
-        if (is_dir(__DIR__ . '/../../../resources/views/pages/' . $this->pages)) {
+        if (is_dir(__DIR__.'/../../../resources/views/pages/'.$this->pages)) {
             $command->comment('Publishing pages...');
             $command->publish(
-                __DIR__ . '/../../../resources/views/pages/' . $this->pages,
-                base_path('resources/views/pages/helium/' . $this->pages)
+                __DIR__.'/../../../resources/views/pages/'.$this->pages,
+                base_path('resources/views/pages/helium/'.$this->pages)
             );
         }
 
-        if (is_dir(__DIR__ . '/../../../resources/views/components/' . $this->components)) {
+        if (is_dir(__DIR__.'/../../../resources/views/components/'.$this->components)) {
             $command->comment('Publishing components...');
             $command->publish(
-                __DIR__ . '/../../../resources/views/components/' . $this->components,
-                base_path('resources/views/components/helium/' . $this->components)
+                __DIR__.'/../../../resources/views/components/'.$this->components,
+                base_path('resources/views/components/helium/'.$this->components)
             );
         }
 
-        if (is_dir(__DIR__ . '/../../../resources/views/livewire/' . $this->livewire)) {
+        if (is_dir(__DIR__.'/../../../resources/views/livewire/'.$this->livewire)) {
             $command->comment('Publishing livewire...');
             $command->publish(
-                __DIR__ . '/../../../resources/views/livewire/' . $this->livewire,
-                base_path('resources/views/livewire/helium/' . $this->livewire)
+                __DIR__.'/../../../resources/views/livewire/'.$this->livewire,
+                base_path('resources/views/livewire/helium/'.$this->livewire)
             );
         }
 
-        if (is_dir(__DIR__ . '/../../../resources/js/' . $this->js)) {
+        if (is_dir(__DIR__.'/../../../resources/js/'.$this->js)) {
             $command->comment('Publishing js...');
             $command->publish(
-                __DIR__ . '/../../../resources/js/' . $this->js,
-                base_path('resources/js/helium/' . $this->js)
+                __DIR__.'/../../../resources/js/'.$this->js,
+                base_path('resources/js/helium/'.$this->js)
             );
         }
 
-        if (is_dir(__DIR__ . '/../../../resources/css/' . $this->css)) {
+        if (is_dir(__DIR__.'/../../../resources/css/'.$this->css)) {
             $command->comment('Publishing css...');
             $command->publish(
-                __DIR__ . '/../../../resources/css/' . $this->css,
-                base_path('resources/css/helium/' . $this->css)
+                __DIR__.'/../../../resources/css/'.$this->css,
+                base_path('resources/css/helium/'.$this->css)
             );
         }
     }
