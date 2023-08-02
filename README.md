@@ -7,6 +7,13 @@ Laravel Admin made with Helium UI
 [![pint](https://github.com/agence-webup/laravel-helium-core/actions/workflows/pint.yml/badge.svg?branch=main)](https://github.com/agence-webup/laravel-helium-core/actions/workflows/pint.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/webup/laravel-helium-core.svg?style=flat-square)](https://packagist.org/packages/webup/laravel-helium-core)
 
+## Requirements
+
+```bash
+# you also need to follow this package's installation steps
+composer require webup/helium-ui
+```
+
 ## Installation
 
 You can install the package via composer:
