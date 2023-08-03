@@ -67,6 +67,11 @@ return [
     ],
 ];
 ```
+
+### Datatable
+
+[doc](docs/datatable.md)
+
 ## Testing
 
 ```bash
