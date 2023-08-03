@@ -17,9 +17,11 @@ class Datatable extends Component
     public array $customFilters = [];
 
     public Model $model;
+
     public int $paginationSize = 10;
 
     protected $query;
+
     protected $data;
 
     protected $listeners = ['updateFromSidebar'];
@@ -28,7 +30,7 @@ class Datatable extends Component
 
     public function mount()
     {
-        $this->customFilters = session()->get("datatable." . $this->sharedKey, []);
+        $this->customFilters = session()->get('datatable.'.$this->sharedKey, []);
         $this->model = $this->baseQuery()->getModel();
     }
 
@@ -51,7 +53,7 @@ class Datatable extends Component
 
     public function updateFromSidebar()
     {
-        $this->customFilters = session()->get("datatable." . $this->sharedKey, []);
+        $this->customFilters = session()->get('datatable.'.$this->sharedKey, []);
         $this->resetPage();
     }
 
@@ -59,7 +61,7 @@ class Datatable extends Component
 
     public function result()
     {
-        if (!$this->data) {
+        if (! $this->data) {
             $this->data = $this->buildDatabaseQuery()->paginate($this->paginationSize);
         }
 
@@ -74,7 +76,7 @@ class Datatable extends Component
     public function getActiveFiltersCount()
     {
         return count(collect($this->customFilters)->filter(function ($filter) {
-            return $filter !== null && $filter !== "";
+            return $filter !== null && $filter !== '';
         }));
     }
 
@@ -82,15 +84,15 @@ class Datatable extends Component
     {
         $result = null;
 
-        if (method_exists($this, "link")) {
+        if (method_exists($this, 'link')) {
             $result = $this->link($model);
         }
 
         if ($result) {
-            return 'data-link="' . $result . '"';
+            return 'data-link="'.$result.'"';
         }
 
-        return "";
+        return '';
     }
 
     public function hasActiveFilters()
@@ -119,8 +121,8 @@ class Datatable extends Component
         foreach ($this->columns() as $column) {
             if ($column->isRaw) {
                 $this->query->addSelect(DB::raw($column->rawSelect));
-            } elseif (str_contains($column->name, ".")) {
-                throw new \Exception("Relationships not supported yet");
+            } elseif (str_contains($column->name, '.')) {
+                throw new \Exception('Relationships not supported yet');
                 // $relations = explode('.', Str::before($column->name, ':'));
                 // $relationName = $relations[0];
                 // $relationQuery = $this->query->getRelation($relationName);
@@ -171,7 +173,7 @@ class Datatable extends Component
     {
         $this->query->when($this->search, function ($query) {
             return $query->where(function ($subquery) {
-                foreach (explode(" ", $this->search) as $key => $word) {
+                foreach (explode(' ', $this->search) as $key => $word) {
                     $subquery->where(function ($subsubquery) use ($word) {
                         foreach ($this->getSearchableColumns() as $key => $column) {
                             // if ($column->isRelation()) {
@@ -187,7 +189,7 @@ class Datatable extends Component
                             //         return $subsubquery->whereRaw("$column->name like '%" . $word . "%'");
                             //     }
                             // }
-                            return $subsubquery->whereRaw("$column->name like '%" . $word . "%'");
+                            return $subsubquery->whereRaw("$column->name like '%".$word."%'");
                         }
                     });
                 }
@@ -198,11 +200,11 @@ class Datatable extends Component
     private function addSort()
     {
         $alias = $this->sortBy;
-        if (!$alias) {
+        if (! $alias) {
             return;
         }
 
-        $this->query->orderBy(DB::raw("`" . $alias . "`"), $this->sortDirection);
+        $this->query->orderBy(DB::raw('`'.$alias.'`'), $this->sortDirection);
     }
 
     // ------------------ pagination methods ------------------
@@ -225,7 +227,7 @@ class Datatable extends Component
 
     public function baseQuery()
     {
-        throw new \Exception("You must override the baseQuery method");
+        throw new \Exception('You must override the baseQuery method');
     }
 
     public function link($model)
@@ -235,7 +237,7 @@ class Datatable extends Component
 
     public function columns()
     {
-        throw new \Exception("You must override the columns method");
+        throw new \Exception('You must override the columns method');
     }
 
     public function addCustomFilters($customFilters)

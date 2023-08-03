@@ -8,8 +8,9 @@ trait WithPaginationAndSorting
 {
     use WithPagination;
 
-    public string $sortBy = "";
-    public string $sortDirection = "asc";
+    public string $sortBy = '';
+
+    public string $sortDirection = 'asc';
 
     public function sortBy($field)
     {
@@ -23,6 +24,6 @@ trait WithPaginationAndSorting
 
     private function reverseSqlOrder(string $order): string
     {
-        return $order == "asc" ? "desc" : "asc";
+        return $order == 'asc' ? 'desc' : 'asc';
     }
 }
