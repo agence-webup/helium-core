@@ -1,7 +1,8 @@
 <div>
     @if ($this->isSearchable())
         <div class="mb-8 flex items-center justify-between">
-            <input wire:model="search" type="search" class="w-full max-w-lg" placeholder="Recherche ...">
+            <input wire:model="search" type="search" class="w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Recherche ...">
         </div>
     @endif
 
