@@ -11,7 +11,7 @@ class Route extends Step
     public function handle(Publish $command): void
     {
         // get the already published route file or the default one
-        $app_route_path = base_path('routes/'. config('helium-core.routing.as') . '.php');
+        $app_route_path = base_path('routes/'.config('helium-core.routing.as').'.php');
         $app_route = file_exists($app_route_path)
             ? file_get_contents($app_route_path)
             : file_get_contents(__DIR__.'/../../../routes/helium.php');
