@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Helium;
 
 use Illuminate\Routing\Controller;
-use Webup\LaravelHeliumCore\Traits\SendsPasswordResetEmails;
+use Webup\HeliumCore\Traits\SendsPasswordResetEmails;
 
 /**
  * todo: stubify

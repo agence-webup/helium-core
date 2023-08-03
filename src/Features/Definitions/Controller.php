@@ -1,8 +1,8 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Features\Definitions;
+namespace Webup\HeliumCore\Features\Definitions;
 
-use Webup\LaravelHeliumCore\Commands\Publish;
+use Webup\HeliumCore\Commands\Publish;
 
 class Controller extends Step
 {
@@ -10,14 +10,14 @@ class Controller extends Step
 
     public function handle(Publish $command): void
     {
-        $content = file_get_contents(__DIR__.'/../../Http/Controllers/'.$this->stub);
+        $content = file_get_contents(__DIR__ . '/../../Http/Controllers/' . $this->stub);
         if ($this->stub_processor !== null) {
             $content = ($this->stub_processor)($content);
         }
 
         $command->publish(
             $content,
-            base_path('app/Http/Controllers/'.config('helium-core.namespace').'/'.$this->filename)
+            base_path('app/Http/Controllers/' . config('helium-core.namespace') . '/' . $this->filename)
         );
     }
 

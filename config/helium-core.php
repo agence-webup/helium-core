@@ -1,6 +1,6 @@
 <?php
 
-// config for Webup/LaravelHeliumCore
+// config for Webup/HeliumCore
 
 return [
     /**

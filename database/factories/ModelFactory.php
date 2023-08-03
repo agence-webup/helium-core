@@ -1,6 +1,6 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Database\Factories;
+namespace Webup\HeliumCore\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Traits;
+namespace Webup\HeliumCore\Traits;
 
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Cache\RateLimiter;
@@ -85,7 +85,7 @@ trait ThrottlesLogins
      */
     protected function throttleKey(Request $request)
     {
-        return Str::transliterate(Str::lower($request->input($this->username())).'|'.$request->ip());
+        return Str::transliterate(Str::lower($request->input($this->username())) . '|' . $request->ip());
     }
 
     /**

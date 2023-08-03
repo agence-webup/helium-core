@@ -2,10 +2,10 @@
 
 Laravel Admin made with Helium UI
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/webup/laravel-helium-core.svg?style=flat-square)](https://packagist.org/packages/webup/laravel-helium-core)
-[![tests](https://github.com/agence-webup/laravel-helium-core/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/agence-webup/laravel-helium-core/actions/workflows/tests.yml)
-[![pint](https://github.com/agence-webup/laravel-helium-core/actions/workflows/pint.yml/badge.svg?branch=main)](https://github.com/agence-webup/laravel-helium-core/actions/workflows/pint.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/webup/laravel-helium-core.svg?style=flat-square)](https://packagist.org/packages/webup/laravel-helium-core)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/webup/helium-core.svg?style=flat-square)](https://packagist.org/packages/webup/helium-core)
+[![tests](https://github.com/agence-webup/helium-core/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/agence-webup/helium-core/actions/workflows/tests.yml)
+[![pint](https://github.com/agence-webup/helium-core/actions/workflows/pint.yml/badge.svg?branch=main)](https://github.com/agence-webup/helium-core/actions/workflows/pint.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/webup/helium-core.svg?style=flat-square)](https://packagist.org/packages/webup/helium-core)
 
 ## Requirements
 
@@ -19,7 +19,7 @@ composer require webup/helium-ui
 You can install the package via composer:
 
 ```bash
-composer require webup/laravel-helium-core
+composer require webup/helium-core
 ```
 
 You can publish features as you go with:

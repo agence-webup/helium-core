@@ -1,12 +1,12 @@
 {
-    "name": "webup/laravel-helium-core",
+    "name": "webup/helium-core",
     "description": "Laravel Admin made with Helium UI",
     "keywords": [
         "webup",
         "laravel",
-        "laravel-helium-core"
+        "helium-core"
     ],
-    "homepage": "https://github.com/webup/laravel-helium-core",
+    "homepage": "https://github.com/webup/helium-core",
     "license": "MIT",
     "authors": [
         {
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Webup\\LaravelHeliumCore\\": "src/",
-            "Webup\\LaravelHeliumCore\\Database\\Factories\\": "database/factories/"
+            "Webup\\HeliumCore\\": "src/",
+            "Webup\\HeliumCore\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Webup\\LaravelHeliumCore\\Tests\\": "tests/"
+            "Webup\\HeliumCore\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Webup\\LaravelHeliumCore\\LaravelHeliumCoreServiceProvider"
+                "Webup\\HeliumCore\\HeliumCoreServiceProvider"
             ],
             "aliases": {
-                "LaravelHeliumCore": "Webup\\LaravelHeliumCore\\Facades\\LaravelHeliumCore"
+                "HeliumCore": "Webup\\HeliumCore\\Facades\\HeliumCore"
             }
         }
     },

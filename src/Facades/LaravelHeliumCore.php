@@ -1,18 +1,18 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Facades;
+namespace Webup\HeliumCore\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Webup\LaravelHeliumCore\LaravelHeliumCore
+ * @see \Webup\HeliumCore\HeliumCore
  *
  * @method static string getDefaultStubProcessor(string $content)
  */
-class LaravelHeliumCore extends Facade
+class HeliumCore extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Webup\LaravelHeliumCore\LaravelHeliumCore::class;
+        return \Webup\HeliumCore\HeliumCore::class;
     }
 }

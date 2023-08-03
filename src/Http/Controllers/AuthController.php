@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Helium;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Webup\LaravelHeliumCore\Traits\AuthenticatesUsers;
+use Webup\HeliumCore\Traits\AuthenticatesUsers;
 
 /**
  * todo: stubify
@@ -20,11 +20,11 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('pages.'.config('helium-core.resources').'.user.login');
+        return view('pages.' . config('helium-core.resources') . '.user.login');
     }
 
     public function redirectPath()
     {
-        return route(config('helium-core.routing.as').'::home');
+        return route(config('helium-core.routing.as') . '::home');
     }
 }

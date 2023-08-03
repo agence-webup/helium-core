@@ -1,9 +1,9 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Features\Definitions;
+namespace Webup\HeliumCore\Features\Definitions;
 
 use Closure;
-use Webup\LaravelHeliumCore\Commands\Publish;
+use Webup\HeliumCore\Commands\Publish;
 
 class Step
 {
@@ -20,7 +20,7 @@ class Step
 
     public function handle(Publish $command): void
     {
-        $command->info('Step '.static::class.' handled');
+        $command->info('Step ' . static::class . ' handled');
     }
 
     public function stub(string $stub): static

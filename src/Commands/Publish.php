@@ -1,10 +1,10 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Commands;
+namespace Webup\HeliumCore\Commands;
 
 use Illuminate\Foundation\Console\VendorPublishCommand;
 use Symfony\Component\Finder\SplFileInfo;
-use Webup\LaravelHeliumCore\Features\UserFeature;
+use Webup\HeliumCore\Features\UserFeature;
 
 class Publish extends VendorPublishCommand
 {
@@ -32,7 +32,7 @@ class Publish extends VendorPublishCommand
 
         foreach ($features as $feature) {
             $feature::make()->handle($this);
-            $this->info('Feature '.$choice.' published');
+            $this->info('Feature ' . $choice . ' published');
         }
 
         return self::SUCCESS;
@@ -50,8 +50,9 @@ class Publish extends VendorPublishCommand
 
     public function publish(string $content, string $to)
     {
-        if ((! $this->option('existing') && (! $this->files->exists($to) || $this->option('force')))
-            || ($this->option('existing') && $this->files->exists($to))) {
+        if ((!$this->option('existing') && (!$this->files->exists($to) || $this->option('force')))
+            || ($this->option('existing') && $this->files->exists($to))
+        ) {
             $this->createParentDirectory(dirname($to));
 
             $this->files->put($to, $content);
@@ -61,12 +62,12 @@ class Publish extends VendorPublishCommand
             if ($this->option('existing')) {
                 $this->components->twoColumnDetail(sprintf(
                     'File [%s] does not exist',
-                    str_replace(base_path().'/', '', $to),
+                    str_replace(base_path() . '/', '', $to),
                 ), '<fg=yellow;options=bold>SKIPPED</>');
             } else {
                 $this->components->twoColumnDetail(sprintf(
                     'File [%s] already exists',
-                    str_replace(base_path().'/', '', realpath($to)),
+                    str_replace(base_path() . '/', '', realpath($to)),
                 ), '<fg=yellow;options=bold>SKIPPED</>');
             }
         }

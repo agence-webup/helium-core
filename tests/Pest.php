@@ -1,5 +1,5 @@
 <?php
 
-use Webup\LaravelHeliumCore\Tests\TestCase;
+use Webup\HeliumCore\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

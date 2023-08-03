@@ -1,6 +1,6 @@
 <?php
 
-namespace Webup\LaravelHeliumCore\Datatable;
+namespace Webup\HeliumCore\Datatable;
 
 use Livewire\WithPagination;
 

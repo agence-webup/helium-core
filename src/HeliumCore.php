@@ -1,10 +1,10 @@
 <?php
 
-namespace Webup\LaravelHeliumCore;
+namespace Webup\HeliumCore;
 
 use Closure;
 
-class LaravelHeliumCore
+class HeliumCore
 {
     public function getDefaultStubProcessor(): Closure
     {

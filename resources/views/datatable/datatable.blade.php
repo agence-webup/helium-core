@@ -15,7 +15,7 @@
             <tr>
                 @foreach ($this->columns() as $column)
                     @if (!$column->hidden)
-                        @include('laravel-helium-core::datatable.header', [
+                        @include('helium-core::datatable.header', [
                             'label' => $column->label,
                             'class' => implode(',', $column->headerClasses),
                             'sortable' => $column->sortable ? $column->alias : '',

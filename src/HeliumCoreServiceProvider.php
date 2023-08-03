@@ -1,23 +1,23 @@
 <?php
 
-namespace Webup\LaravelHeliumCore;
+namespace Webup\HeliumCore;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Webup\LaravelHeliumCore\Commands\Publish;
+use Webup\HeliumCore\Commands\Publish;
 
-class LaravelHeliumCoreServiceProvider extends PackageServiceProvider
+class HeliumCoreServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-helium-core')
+            ->name('helium-core')
             ->hasConfigFile('helium-core')
-            ->hasViews('laravel-helium-core')
+            ->hasViews('helium-core')
             ->hasCommand(Publish::class);
 
         if (file_exists(base_path('routes/helium.php'))) {
-            $this->loadRoutesFrom(base_path('routes').'/helium.php');
+            $this->loadRoutesFrom(base_path('routes') . '/helium.php');
         }
     }
 }
