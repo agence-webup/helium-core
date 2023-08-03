@@ -3,6 +3,7 @@
 namespace Webup\LaravelHeliumCore\Commands;
 
 use Illuminate\Foundation\Console\VendorPublishCommand;
+use Symfony\Component\Finder\SplFileInfo;
 use Webup\LaravelHeliumCore\Features\UserFeature;
 
 class Publish extends VendorPublishCommand
@@ -37,9 +38,38 @@ class Publish extends VendorPublishCommand
         return self::SUCCESS;
     }
 
-    public function publish(string $from, string $to)
+    /**
+     * @return string[]
+     */
+    public function getAllFiles(string $path)
     {
-        $this->publishItem($from, $to);
+        return array_map(function (SplFileInfo $file) {
+            $file->getPathname();
+        }, $this->files->allFiles($path));
+    }
+
+    public function publish(string $content, string $to)
+    {
+        if ((! $this->option('existing') && (! $this->files->exists($to) || $this->option('force')))
+            || ($this->option('existing') && $this->files->exists($to))) {
+            $this->createParentDirectory(dirname($to));
+
+            $this->files->put($content, $to);
+
+            $this->comment("Writing to $to.");
+        } else {
+            if ($this->option('existing')) {
+                $this->components->twoColumnDetail(sprintf(
+                    'File [%s] does not exist',
+                    str_replace(base_path().'/', '', $to),
+                ), '<fg=yellow;options=bold>SKIPPED</>');
+            } else {
+                $this->components->twoColumnDetail(sprintf(
+                    'File [%s] already exists',
+                    str_replace(base_path().'/', '', realpath($to)),
+                ), '<fg=yellow;options=bold>SKIPPED</>');
+            }
+        }
     }
 
     // private function processMenu()

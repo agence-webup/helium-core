@@ -10,8 +10,12 @@ class Model extends Step
 
     public function handle(Publish $command): void
     {
+        $content = file_get_contents(__DIR__.'/../../Models/'.$this->stub);
+        if ($this->stub_processor) {
+            $content = ($this->stub_processor)($content);
+        }
         $command->publish(
-            __DIR__.'/../../Models/'.$this->filename,
+            $content,
             base_path('app/Models/'.config('helium-core.namespace').'/'.$this->filename)
         );
     }

@@ -1,0 +1,19 @@
+        Route::get('/login', 'App\Http\Controllers\{{ $namespace }}\AuthController@showLoginForm')->name('login');
+        Route::post('/login', 'App\Http\Controllers\{{ $namespace }}\AuthController@login');
+        Route::get('/logout', 'App\Http\Controllers\{{ $namespace }}\AuthController@logout')->name('logout');
+
+        Route::middleware('auth:{{ $guard }}')
+            ->prefix('{{ table_name }}')
+            ->as('{{ $table_name }}.')
+            ->group(function () {
+                Route::get('/', [App\Http\Controllers\{{ $namespace }}\{{ $controller_name }}::class, 'index'])->name('index');
+                Route::get('/{id}', [App\Http\Controllers\{{ $namespace }}\{{ $controller_name }}::class, 'show'])->name('show');
+
+                Route::get('/create', [App\Http\Controllers\{{ $namespace }}\{{ $controller_name }}::class, 'create'])->name('create');
+                Route::post('/store', [App\Http\Controllers\{{ $namespace }}\{{ $controller_name }}::class, 'store'])->name('store');
+
+                Route::get('/edit/{id}', [App\Http\Controllers\{{ $namespace }}\{{ $controller_name }}::class, 'edit'])->name('edit');
+                Route::post('/update/{id}', [App\Http\Controllers\{{ $namespace }}\{{ $controller_name }}::class, 'update'])->name('update');
+
+                Route::delete('/destroy/{id}', [App\Http\Controllers\{{ $namespace }}\{{ $controller_name }}::class, 'destroy'])->name('destroy');
+            });

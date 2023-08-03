@@ -1,0 +1,10 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::middleware({{ $middleware }})
+    ->prefix({{ $prefix }})
+    ->as({{ $as }})
+    ->namespace('App\Http\Controllers\{{ $namespace }}')->group(function () {
+        // * Helium publish marker - Do not remove this line *
+    });

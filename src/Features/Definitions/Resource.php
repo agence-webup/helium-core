@@ -6,90 +6,85 @@ use Webup\LaravelHeliumCore\Commands\Publish;
 
 class Resource extends Step
 {
-    public string $pages = '';
-
-    public string $components = '';
-
-    public string $livewire = '';
-
-    public string $js = '';
-
-    public string $css = '';
+    public string $directory;
 
     public function handle(Publish $command): void
     {
-        if (is_dir(__DIR__.'/../../../resources/views/pages/'.$this->pages)) {
+        if (is_dir(__DIR__.'/../../../resources/views/pages/'.$this->stub)) {
             $command->comment('Publishing pages...');
-            $command->publish(
-                __DIR__.'/../../../resources/views/pages/'.$this->pages,
-                base_path('resources/views/pages/'.config('helium-core.resources').'/'.$this->pages)
-            );
+            foreach ($command->getAllFiles(__DIR__.'/../../../resources/views/pages/'.$this->stub) as $file) {
+                $content = file_get_contents($file);
+                if ($this->stub_processor) {
+                    $content = ($this->stub_processor)($content);
+                }
+                $command->publish(
+                    $content,
+                    base_path('resources/views/pages/'.config('helium-core.resources').'/'.$this->directory.'/'.basename($file))
+                );
+            }
         }
 
-        if (is_dir(__DIR__.'/../../../resources/views/components/'.$this->components)) {
+        // same for components, livewire, js, css
+        if (is_dir(__DIR__.'/../../../resources/views/components/'.$this->stub)) {
             $command->comment('Publishing components...');
-            $command->publish(
-                __DIR__.'/../../../resources/views/components/'.$this->components,
-                base_path('resources/views/components/'.config('helium-core.resources').'/'.$this->components)
-            );
+            foreach ($command->getAllFiles(__DIR__.'/../../../resources/views/components/'.$this->stub) as $file) {
+                $content = file_get_contents($file);
+                if ($this->stub_processor) {
+                    $content = ($this->stub_processor)($content);
+                }
+                $command->publish(
+                    $content,
+                    base_path('resources/views/components/'.config('helium-core.resources').'/'.$this->directory.'/'.basename($file))
+                );
+            }
         }
 
-        if (is_dir(__DIR__.'/../../../resources/views/livewire/'.$this->livewire)) {
+        if (is_dir(__DIR__.'/../../../resources/views/livewire/'.$this->stub)) {
             $command->comment('Publishing livewire...');
-            $command->publish(
-                __DIR__.'/../../../resources/views/livewire/'.$this->livewire,
-                base_path('resources/views/livewire/'.config('helium-core.resources').'/'.$this->livewire)
-            );
+            foreach ($command->getAllFiles(__DIR__.'/../../../resources/views/livewire/'.$this->stub) as $file) {
+                $content = file_get_contents($file);
+                if ($this->stub_processor) {
+                    $content = ($this->stub_processor)($content);
+                }
+                $command->publish(
+                    $content,
+                    base_path('resources/views/livewire/'.config('helium-core.resources').'/'.$this->directory.'/'.basename($file))
+                );
+            }
         }
 
-        if (is_dir(__DIR__.'/../../../resources/js/'.$this->js)) {
+        if (is_dir(__DIR__.'/../../../resources/js/'.$this->stub)) {
             $command->comment('Publishing js...');
-            $command->publish(
-                __DIR__.'/../../../resources/js/'.$this->js,
-                base_path('resources/js/'.config('helium-core.resources').'/'.$this->js)
-            );
+            foreach ($command->getAllFiles(__DIR__.'/../../../resources/js/'.$this->stub) as $file) {
+                $content = file_get_contents($file);
+                if ($this->stub_processor) {
+                    $content = ($this->stub_processor)($content);
+                }
+                $command->publish(
+                    $content,
+                    base_path('resources/js/'.config('helium-core.resources').'/'.$this->directory.'/'.basename($file))
+                );
+            }
         }
 
-        if (is_dir(__DIR__.'/../../../resources/css/'.$this->css)) {
+        if (is_dir(__DIR__.'/../../../resources/css/'.$this->stub)) {
             $command->comment('Publishing css...');
-            $command->publish(
-                __DIR__.'/../../../resources/css/'.$this->css,
-                base_path('resources/css/'.config('helium-core.resources').'/'.$this->css)
-            );
+            foreach ($command->getAllFiles(__DIR__.'/../../../resources/css/'.$this->stub) as $file) {
+                $content = file_get_contents($file);
+                if ($this->stub_processor) {
+                    $content = ($this->stub_processor)($content);
+                }
+                $command->publish(
+                    $content,
+                    base_path('resources/css/'.config('helium-core.resources').'/'.$this->directory.'/'.basename($file))
+                );
+            }
         }
     }
 
-    public function pages(string $pages): self
+    public function directory(string $directory): self
     {
-        $this->pages = $pages;
-
-        return $this;
-    }
-
-    public function components(string $components): self
-    {
-        $this->components = $components;
-
-        return $this;
-    }
-
-    public function livewire(string $livewire): self
-    {
-        $this->livewire = $livewire;
-
-        return $this;
-    }
-
-    public function js(string $js): self
-    {
-        $this->js = $js;
-
-        return $this;
-    }
-
-    public function css(string $css): self
-    {
-        $this->css = $css;
+        $this->directory = $directory;
 
         return $this;
     }

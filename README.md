@@ -28,19 +28,19 @@ You can publish features as you go with:
 php artisan helium:publish
 ```
 
-This is the contents of the published config file:
+## :warning: Configuration :warning:
 
-```php
-return [
-];
-```
+The published config file handles all specific configuration prior to publishing a feature.
+Once a feature is published, the only way to update its configurable properties is manual.
+
+Thus, make sure to configure this package to suit your preferences before starting to publish anything.
 
 ## Features
 
 ### User
 
 ```bash
-php artisan helium:migrate
+php artisan helium:publish
 > User
 ```
 
@@ -62,7 +62,7 @@ return [
         ...
         'helium_users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Helium\HeliumUser::class,
+            'model' => App\Models\Helium\User::class,
         ],
     ],
 ];

@@ -1,4 +1,4 @@
-@extends('helium::layouts.admin')
+@extends('helium-ui::layouts.admin')
 
 @section('content')
     toto

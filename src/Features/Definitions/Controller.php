@@ -10,8 +10,13 @@ class Controller extends Step
 
     public function handle(Publish $command): void
     {
+        $content = file_get_contents(__DIR__.'/../../Http/Controllers/'.$this->stub);
+        if ($this->stub_processor) {
+            $content = ($this->stub_processor)($content);
+        }
+
         $command->publish(
-            __DIR__.'/../../Http/Controllers/'.$this->filename,
+            $content,
             base_path('app/Http/Controllers/'.config('helium-core.namespace').'/'.$this->filename)
         );
     }

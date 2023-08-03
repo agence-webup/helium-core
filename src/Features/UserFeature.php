@@ -3,6 +3,7 @@
 namespace Webup\LaravelHeliumCore\Features;
 
 use Webup\LaravelHeliumCore\Commands\Publish;
+use Webup\LaravelHeliumCore\Facades\LaravelHeliumCore;
 use Webup\LaravelHeliumCore\Features\Definitions\Controller;
 use Webup\LaravelHeliumCore\Features\Definitions\Feature;
 use Webup\LaravelHeliumCore\Features\Definitions\Migration;
@@ -15,25 +16,27 @@ class UserFeature extends Feature
     public static function make(): self
     {
         return parent::make()
+            ->default_stub_processor(LaravelHeliumCore::getDefaultStubProcessor())
             ->migrations([
-                Migration::make()->filename('helium_create_users_table.php'),
-                Migration::make()->filename('helium_create_default_user.php'),
+                Migration::make()
+                    ->stub('helium_create_users_table.php')
+                    ->filename('create_'.config('helium-core.features.users.table_name').'_table.php'),
+                Migration::make()
+                    ->stub('helium_create_default_user.php')
+                    ->filename('create_default_'.config('helium-core.features.users.table_name').'.php'),
             ])
-            ->routes(Route::make()->filename('users.php'))
-            ->resources(
-                Resource::make()
-                    ->pages('user')
-            )
+            ->routes(Route::make()->stub('users.php'))
+            ->resources(Resource::make()->stub('users')->directory(config('helium-core.features.users.table_name')))
             ->models([
-                Model::make()->filename('User.php'),
+                Model::make()->stub('User.php.stub')->filename(config('helium-core.features.users.model_name').'.php'),
             ])
             ->controllers([
-                Controller::make()->filename('AuthController.php'),
-                Controller::make()->filename('ForgotPasswordController.php'),
-                Controller::make()->filename('ResetPasswordController.php'),
-                // Controller::make()->filename('UserController.php'),
+                // Controller::make()->filename('AuthController.php'),
+                // Controller::make()->filename('ForgotPasswordController.php'),
+                // Controller::make()->filename('ResetPasswordController.php'),
+                Controller::make()->stub('UserController.php')->filename(config('helium-core.features.users.controller_name').'.php'),
             ])
-            ->additionalSteps([
+            ->epilogue([
                 function (Publish $publish) {
                     $publish->confirm("Do not forget to add the provider and the guard to your config/auth.php file,\nas described in the README.md file.\nPress enter to continue.");
                 },
