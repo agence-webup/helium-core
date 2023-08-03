@@ -12,7 +12,7 @@ class Model extends Step
     {
         $command->publish(
             __DIR__.'/../../Models/'.$this->filename,
-            base_path('app/Models/Helium/'.$this->filename)
+            base_path('app/Models/'.config('helium-core.namespace').'/'.$this->filename)
         );
     }
 

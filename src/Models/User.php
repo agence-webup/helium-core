@@ -2,10 +2,12 @@
 
 namespace App\Models\Helium;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class HeliumUser extends User
+class User extends Authenticatable
 {
+    protected $table = 'helium_users';
+
     protected array $hidden = [
         'password',
     ];

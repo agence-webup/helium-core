@@ -16,8 +16,8 @@ class UserFeature extends Feature
     {
         return parent::make()
             ->migrations([
-                Migration::make()->filename('create_helium_users_table.php'),
-                Migration::make()->filename('create_helium_default_user.php'),
+                Migration::make()->filename('helium_create_users_table.php'),
+                Migration::make()->filename('helium_create_default_user.php'),
             ])
             ->routes(Route::make()->filename('users.php'))
             ->resources(
@@ -25,7 +25,7 @@ class UserFeature extends Feature
                     ->pages('user')
             )
             ->models([
-                Model::make()->filename('HeliumUser.php'),
+                Model::make()->filename('User.php'),
             ])
             ->controllers([
                 Controller::make()->filename('AuthController.php'),

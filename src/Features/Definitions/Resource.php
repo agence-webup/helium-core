@@ -22,7 +22,7 @@ class Resource extends Step
             $command->comment('Publishing pages...');
             $command->publish(
                 __DIR__.'/../../../resources/views/pages/'.$this->pages,
-                base_path('resources/views/pages/helium/'.$this->pages)
+                base_path('resources/views/pages/'.config('helium-core.resources').'/'.$this->pages)
             );
         }
 
@@ -30,7 +30,7 @@ class Resource extends Step
             $command->comment('Publishing components...');
             $command->publish(
                 __DIR__.'/../../../resources/views/components/'.$this->components,
-                base_path('resources/views/components/helium/'.$this->components)
+                base_path('resources/views/components/'.config('helium-core.resources').'/'.$this->components)
             );
         }
 
@@ -38,7 +38,7 @@ class Resource extends Step
             $command->comment('Publishing livewire...');
             $command->publish(
                 __DIR__.'/../../../resources/views/livewire/'.$this->livewire,
-                base_path('resources/views/livewire/helium/'.$this->livewire)
+                base_path('resources/views/livewire/'.config('helium-core.resources').'/'.$this->livewire)
             );
         }
 
@@ -46,7 +46,7 @@ class Resource extends Step
             $command->comment('Publishing js...');
             $command->publish(
                 __DIR__.'/../../../resources/js/'.$this->js,
-                base_path('resources/js/helium/'.$this->js)
+                base_path('resources/js/'.config('helium-core.resources').'/'.$this->js)
             );
         }
 
@@ -54,7 +54,7 @@ class Resource extends Step
             $command->comment('Publishing css...');
             $command->publish(
                 __DIR__.'/../../../resources/css/'.$this->css,
-                base_path('resources/css/helium/'.$this->css)
+                base_path('resources/css/'.config('helium-core.resources').'/'.$this->css)
             );
         }
     }

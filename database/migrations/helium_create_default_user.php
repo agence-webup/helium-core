@@ -1,13 +1,13 @@
 <?php
 
-use App\Models\HeliumUser;
+use App\Models\Helium\User;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
     public function up()
     {
-        (new HeliumUser([
+        (new User([
             'email' => 'admin',
             'password' => bcrypt('changeme'),
         ]))->save();
@@ -15,6 +15,6 @@ return new class extends Migration
 
     public function down()
     {
-        HeliumUser::query()->where('email', 'admin')->delete();
+        User::query()->where('email', 'admin')->delete();
     }
 };

@@ -12,7 +12,7 @@ class Controller extends Step
     {
         $command->publish(
             __DIR__.'/../../Http/Controllers/'.$this->filename,
-            base_path('app/Http/Controllers/Helium/'.$this->filename)
+            base_path('app/Http/Controllers/'.config('helium-core.namespace').'/'.$this->filename)
         );
     }
 
