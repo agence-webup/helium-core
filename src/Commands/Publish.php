@@ -32,7 +32,7 @@ class Publish extends VendorPublishCommand
 
         foreach ($features as $feature) {
             $feature::make()->handle($this);
-            $this->info('Feature ' . $choice . ' published');
+            $this->info('Feature '.$choice.' published');
         }
 
         return self::SUCCESS;
@@ -50,7 +50,7 @@ class Publish extends VendorPublishCommand
 
     public function publish(string $content, string $to)
     {
-        if ((!$this->option('existing') && (!$this->files->exists($to) || $this->option('force')))
+        if ((! $this->option('existing') && (! $this->files->exists($to) || $this->option('force')))
             || ($this->option('existing') && $this->files->exists($to))
         ) {
             $this->createParentDirectory(dirname($to));
@@ -62,12 +62,12 @@ class Publish extends VendorPublishCommand
             if ($this->option('existing')) {
                 $this->components->twoColumnDetail(sprintf(
                     'File [%s] does not exist',
-                    str_replace(base_path() . '/', '', $to),
+                    str_replace(base_path().'/', '', $to),
                 ), '<fg=yellow;options=bold>SKIPPED</>');
             } else {
                 $this->components->twoColumnDetail(sprintf(
                     'File [%s] already exists',
-                    str_replace(base_path() . '/', '', realpath($to)),
+                    str_replace(base_path().'/', '', realpath($to)),
                 ), '<fg=yellow;options=bold>SKIPPED</>');
             }
         }

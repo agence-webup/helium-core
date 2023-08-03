@@ -30,7 +30,7 @@ class Datatable extends Component
 
     public function mount()
     {
-        $this->customFilters = session()->get('datatable.' . $this->sharedKey, []);
+        $this->customFilters = session()->get('datatable.'.$this->sharedKey, []);
         $this->model = $this->baseQuery()->getModel();
     }
 
@@ -53,7 +53,7 @@ class Datatable extends Component
 
     public function updateFromSidebar()
     {
-        $this->customFilters = session()->get('datatable.' . $this->sharedKey, []);
+        $this->customFilters = session()->get('datatable.'.$this->sharedKey, []);
         $this->resetPage();
     }
 
@@ -61,7 +61,7 @@ class Datatable extends Component
 
     public function result()
     {
-        if (!$this->data) {
+        if (! $this->data) {
             $this->data = $this->buildDatabaseQuery()->paginate($this->paginationSize);
         }
 
@@ -89,7 +89,7 @@ class Datatable extends Component
         }
 
         if ($result) {
-            return 'data-link="' . $result . '"';
+            return 'data-link="'.$result.'"';
         }
 
         return '';
@@ -189,7 +189,7 @@ class Datatable extends Component
                             //         return $subsubquery->whereRaw("$column->name like '%" . $word . "%'");
                             //     }
                             // }
-                            return $subsubquery->whereRaw("$column->name like '%" . $word . "%'");
+                            return $subsubquery->whereRaw("$column->name like '%".$word."%'");
                         }
                     });
                 }
@@ -200,11 +200,11 @@ class Datatable extends Component
     private function addSort()
     {
         $alias = $this->sortBy;
-        if (!$alias) {
+        if (! $alias) {
             return;
         }
 
-        $this->query->orderBy(DB::raw('`' . $alias . '`'), $this->sortDirection);
+        $this->query->orderBy(DB::raw('`'.$alias.'`'), $this->sortDirection);
     }
 
     // ------------------ pagination methods ------------------

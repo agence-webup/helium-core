@@ -11,13 +11,13 @@ class Migration extends Step
 
     public function handle(Publish $command): void
     {
-        $content = file_get_contents(__DIR__ . '/../../../database/migrations/' . $this->stub);
+        $content = file_get_contents(__DIR__.'/../../../database/migrations/'.$this->stub);
         if ($this->stub_processor !== null) {
             $content = ($this->stub_processor)($content);
         }
         $command->publish(
             $content,
-            base_path('database/migrations/' . Carbon::now()->addSecond()->format('Y_m_d_His') . '_' . $this->filename)
+            base_path('database/migrations/'.Carbon::now()->addSecond()->format('Y_m_d_His').'_'.$this->filename)
         );
     }
 

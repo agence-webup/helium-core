@@ -20,7 +20,7 @@ class Step
 
     public function handle(Publish $command): void
     {
-        $command->info('Step ' . static::class . ' handled');
+        $command->info('Step '.static::class.' handled');
     }
 
     public function stub(string $stub): static
