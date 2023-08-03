@@ -14,7 +14,7 @@ class Resource extends Step
             $command->comment('Publishing pages...');
             foreach ($command->getAllFiles(__DIR__.'/../../../resources/views/pages/'.$this->stub) as $file) {
                 $content = file_get_contents($file);
-                if ($this->stub_processor) {
+                if ($this->stub_processor !== null) {
                     $content = ($this->stub_processor)($content);
                 }
                 $command->publish(
@@ -29,7 +29,7 @@ class Resource extends Step
             $command->comment('Publishing components...');
             foreach ($command->getAllFiles(__DIR__.'/../../../resources/views/components/'.$this->stub) as $file) {
                 $content = file_get_contents($file);
-                if ($this->stub_processor) {
+                if ($this->stub_processor !== null) {
                     $content = ($this->stub_processor)($content);
                 }
                 $command->publish(
@@ -43,7 +43,7 @@ class Resource extends Step
             $command->comment('Publishing livewire...');
             foreach ($command->getAllFiles(__DIR__.'/../../../resources/views/livewire/'.$this->stub) as $file) {
                 $content = file_get_contents($file);
-                if ($this->stub_processor) {
+                if ($this->stub_processor !== null) {
                     $content = ($this->stub_processor)($content);
                 }
                 $command->publish(
@@ -57,7 +57,7 @@ class Resource extends Step
             $command->comment('Publishing js...');
             foreach ($command->getAllFiles(__DIR__.'/../../../resources/js/'.$this->stub) as $file) {
                 $content = file_get_contents($file);
-                if ($this->stub_processor) {
+                if ($this->stub_processor !== null) {
                     $content = ($this->stub_processor)($content);
                 }
                 $command->publish(
@@ -71,7 +71,7 @@ class Resource extends Step
             $command->comment('Publishing css...');
             foreach ($command->getAllFiles(__DIR__.'/../../../resources/css/'.$this->stub) as $file) {
                 $content = file_get_contents($file);
-                if ($this->stub_processor) {
+                if ($this->stub_processor !== null) {
                     $content = ($this->stub_processor)($content);
                 }
                 $command->publish(

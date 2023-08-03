@@ -16,9 +16,11 @@ class Route extends Step
             : LaravelHeliumCore::getDefaultStubProcessor()(file_get_contents(__DIR__.'/../../../routes/helium.php.stub'));
 
         // get the routes to publish
-        $route = file_get_contents(__DIR__.'/../../../routes/'.$this->filename);
+        $route = file_get_contents(__DIR__.'/../../../routes/'.$this->stub);
         $route .= "\n\n".$this->marker;
-        $route = ($this->stub_processor)($route);
+        if ($this->stub_processor !== null) {
+            $route = ($this->stub_processor)($route);
+        }
 
         // append the routes to the published file
         $app_route = str_replace($this->marker, $route, $app_route);

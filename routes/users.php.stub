@@ -2,7 +2,7 @@
         Route::post('/login', 'App\Http\Controllers\{{ $namespace }}\AuthController@login');
         Route::get('/logout', 'App\Http\Controllers\{{ $namespace }}\AuthController@logout')->name('logout');
 
-        Route::middleware('auth:{{ $guard }}')
+        Route::middleware('auth:{{ $guard_name }}')
             ->prefix('{{ table_name }}')
             ->as('{{ $table_name }}.')
             ->group(function () {

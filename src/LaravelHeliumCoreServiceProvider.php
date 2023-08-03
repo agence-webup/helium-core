@@ -12,6 +12,7 @@ class LaravelHeliumCoreServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-helium-core')
+            ->hasConfigFile('helium-core')
             ->hasCommand(Publish::class);
 
         if (file_exists(base_path('routes/helium.php'))) {

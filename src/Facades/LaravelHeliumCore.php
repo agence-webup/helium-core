@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Webup\LaravelHeliumCore\LaravelHeliumCore
  *
- * @method static callable getDefaultStubProcessor()
+ * @method static string getDefaultStubProcessor(string $content)
  */
 class LaravelHeliumCore extends Facade
 {

@@ -11,7 +11,7 @@ class Controller extends Step
     public function handle(Publish $command): void
     {
         $content = file_get_contents(__DIR__.'/../../Http/Controllers/'.$this->stub);
-        if ($this->stub_processor) {
+        if ($this->stub_processor !== null) {
             $content = ($this->stub_processor)($content);
         }
 

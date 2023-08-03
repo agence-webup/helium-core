@@ -2,11 +2,12 @@
 
 namespace Webup\LaravelHeliumCore\Features\Definitions;
 
+use Closure;
 use Webup\LaravelHeliumCore\Commands\Publish;
 
 class Feature
 {
-    private ?callable $default_stub_processor = null;
+    private ?Closure $default_stub_processor = null;
 
     public static function make(): self
     {
@@ -129,7 +130,7 @@ class Feature
         return $this;
     }
 
-    public function default_stub_processor(callable $processor): self
+    public function default_stub_processor(Closure $processor): self
     {
         $this->default_stub_processor = $processor;
 

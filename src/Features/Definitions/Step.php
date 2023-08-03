@@ -2,6 +2,7 @@
 
 namespace Webup\LaravelHeliumCore\Features\Definitions;
 
+use Closure;
 use Webup\LaravelHeliumCore\Commands\Publish;
 
 class Step
@@ -10,7 +11,7 @@ class Step
 
     public string $stub = '';
 
-    public ?callable $stub_processor = null;
+    public ?Closure $stub_processor = null;
 
     public static function make(): static
     {
@@ -29,7 +30,7 @@ class Step
         return $this;
     }
 
-    public function stubProcessor(callable $stub_processor): static
+    public function stubProcessor(Closure $stub_processor): static
     {
         $this->stub_processor = $stub_processor;
 

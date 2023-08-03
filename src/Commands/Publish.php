@@ -54,7 +54,7 @@ class Publish extends VendorPublishCommand
             || ($this->option('existing') && $this->files->exists($to))) {
             $this->createParentDirectory(dirname($to));
 
-            $this->files->put($content, $to);
+            $this->files->put($to, $content);
 
             $this->comment("Writing to $to.");
         } else {

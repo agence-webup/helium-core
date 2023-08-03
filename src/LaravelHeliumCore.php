@@ -2,9 +2,11 @@
 
 namespace Webup\LaravelHeliumCore;
 
+use Closure;
+
 class LaravelHeliumCore
 {
-    public function getDefaultStubProcessor(): callable
+    public function getDefaultStubProcessor(): Closure
     {
         return function (string $content): string {
             $content = str_replace('{{ $namespace }} ', config('helium-core.namespace'), $content);
