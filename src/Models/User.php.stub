@@ -4,9 +4,9 @@ namespace App\Models\{{ $namespace }};
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class {{ $model_name }} extends Authenticatable
+class {{ $features.users.model_name }} extends Authenticatable
 {
-    protected $table = '{{ $table_name }}';
+    protected $table = '{{ $features.users.table_name }}';
 
     protected array $hidden = [
         'password',

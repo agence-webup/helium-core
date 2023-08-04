@@ -1,13 +1,13 @@
 <?php
 
-use App\Models\{{ $namespace }}\{{ $model_name }};
+use App\Models\{{ $namespace }}\{{ $features.users.model_name }};
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
     public function up()
     {
-        (new {{ $model_name }}([
+        (new {{ $features.users.model_name }}([
             'email' => 'admin',
             'password' => bcrypt('changeme'),
         ]))->save();
@@ -15,6 +15,6 @@ return new class extends Migration
 
     public function down()
     {
-        {{ $model_name }}::query()->where('email', 'admin')->delete();
+        {{ $features.users.model_name }}::query()->where('email', 'admin')->delete();
     }
 };

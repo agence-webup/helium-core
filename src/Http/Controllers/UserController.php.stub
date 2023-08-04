@@ -5,45 +5,45 @@ namespace App\Http\Controllers\{{ $namespace }};
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use App\Models\{{ $namespace }}\{{ $model_name }};
+use App\Models\{{ $namespace }}\{{ $features.users.model_name }};
 
-class {{ $controller_name }} extends Controller
+class {{ $features.users.controller_name }} extends Controller
 {
     public function index()
     {
-        return view('{{ $resources }}.pages.{{ $table_name }}.index');
+        return view('{{ $resources }}.pages.{{ $features.users.table_name }}.index');
     }
 
     public function show($id)
     {
-        $user = {{ $model_name }}::findOrFail($id);
+        $user = {{ $features.users.model_name }}::findOrFail($id);
 
-        return view('{{ $resources }}.pages.{{ $table_name }}.show', compact('user'));
+        return view('{{ $resources }}.pages.{{ $features.users.table_name }}.show', compact('user'));
     }
 
     public function create()
     {
-        return view('{{ $resources }}.pages.{{ $table_name }}.create');
+        return view('{{ $resources }}.pages.{{ $features.users.table_name }}.create');
     }
 
     public function edit($id)
     {
-        $user = {{ $model_name }}::findOrFail($id);
+        $user = {{ $features.users.model_name }}::findOrFail($id);
 
-        return view('{{ $resources }}.pages.{{ $table_name }}.edit', compact('user'));
+        return view('{{ $resources }}.pages.{{ $features.users.table_name }}.edit', compact('user'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:{{ $table_name }},email',
+            'email' => 'required|email|unique:{{ $features.users.table_name }},email',
         ]);
 
         $data['password'] = bcrypt(Str::random(16));
-        {{ $model_name }}::create($data);
+        {{ $features.users.model_name }}::create($data);
 
-        return redirect()->route('{{ $routing_as }}{{ $table_name }}.index');
+        return redirect()->route('{{ $routing.as }}{{ $features.users.table_name }}.index');
     }
 
     public function update(Request $request, $id)
@@ -52,17 +52,17 @@ class {{ $controller_name }} extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $user = {{ $model_name }}::findOrFail($id);
+        $user = {{ $features.users.model_name }}::findOrFail($id);
         $user->update($data);
         $user->save();
 
-        return redirect()->route('{{ $routing_as }}{{ $table_name }}.show', $user->id);
+        return redirect()->route('{{ $routing.as }}{{ $features.users.table_name }}.show', $user->id);
     }
 
     public function destroy($id)
     {
-        {{ $model_name }}::findOrFail($id)->delete();
+        {{ $features.users.model_name }}::findOrFail($id)->delete();
 
-        return redirect()->route('{{ $routing_as }}{{ $table_name }}.index');
+        return redirect()->route('{{ $routing.as }}{{ $features.users.table_name }}.index');
     }
 }
