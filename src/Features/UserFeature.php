@@ -13,9 +13,9 @@ use Webup\HeliumCore\Features\Definitions\Route;
 
 class UserFeature extends Feature
 {
-    public static function make(): self
+    public static function make(): static
     {
-        return parent::make()
+        return (new static)
             ->default_stub_processor(HeliumCore::getDefaultStubProcessor())
             ->migrations([
                 Migration::make()

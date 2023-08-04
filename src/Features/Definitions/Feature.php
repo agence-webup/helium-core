@@ -9,12 +9,12 @@ class Feature
 {
     private ?Closure $default_stub_processor = null;
 
-    public static function make(): self
+    public static function make(): static
     {
         return new static();
     }
 
-    public function __construct(
+    final public function __construct(
         public array $migrations = [],
         public array $controllers = [],
         public array $models = [],

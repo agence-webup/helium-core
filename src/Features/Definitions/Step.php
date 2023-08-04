@@ -13,6 +13,10 @@ class Step
 
     public ?Closure $stub_processor = null;
 
+    final public function __construct()
+    {
+    }
+
     public static function make(): static
     {
         return new static();

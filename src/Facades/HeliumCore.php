@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Webup\HeliumCore\HeliumCore
  *
- * @method static Closure getDefaultStubProcessor(string $content)
+ * @method static Closure getDefaultStubProcessor()
  */
 class HeliumCore extends Facade
 {
