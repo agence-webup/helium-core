@@ -2,12 +2,13 @@
 
 namespace Webup\HeliumCore\Facades;
 
+use Closure;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \Webup\HeliumCore\HeliumCore
  *
- * @method static string getDefaultStubProcessor(string $content)
+ * @method static Closure getDefaultStubProcessor(string $content)
  */
 class HeliumCore extends Facade
 {
