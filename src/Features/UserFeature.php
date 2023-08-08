@@ -31,9 +31,7 @@ class UserFeature extends Feature
                 Model::make()->stub('User.php.stub')->filename(config('helium-core.features.users.model_name').'.php'),
             ])
             ->controllers([
-                // Controller::make()->filename('AuthController.php'),
-                // Controller::make()->filename('ForgotPasswordController.php'),
-                // Controller::make()->filename('ResetPasswordController.php'),
+                Controller::make()->stub('AuthController.php.stub')->filename('AuthController.php'),
                 Controller::make()->stub('UserController.php.stub')->filename(config('helium-core.features.users.controller_name').'.php'),
             ])
             ->epilogue([

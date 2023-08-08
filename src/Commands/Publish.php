@@ -44,9 +44,9 @@ class Publish extends VendorPublishCommand
     public function getAllFiles(string $path)
     {
         /** @var string[] */
-        $files = array_map(function (SplFileInfo $file) {
-            $file->getPathname();
-        }, $this->files->allFiles($path));
+        $files = collect($this->files->allFiles($path))->mapWithKeys(function (SplFileInfo $file) {
+            return [$file->getBasename() => $file->getRealPath()];
+        });
 
         return $files;
     }

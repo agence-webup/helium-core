@@ -8,7 +8,7 @@ class {{ $features.users.model_name }} extends Authenticatable
 {
     protected $table = '{{ $features.users.table_name }}';
 
-    protected array $hidden = [
+    protected $hidden = [
         'password',
     ];
 

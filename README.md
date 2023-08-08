@@ -52,17 +52,17 @@ return [
     ...
     'guards' => [
         ...
-        'helium' => [
+        'your_configured_guard_name_here' => [
             'driver' => 'session',
-            'provider' => 'helium_users',
+            'provider' => 'helium_users_table_name',
         ],
     ],
 
     'providers' => [
         ...
-        'helium_users' => [
+        'helium_users_table_name' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Helium\User::class,
+            'model' => App\Models\YourConfiguredNamespace\YourConfiguredClassName::class,
         ],
     ],
 ];

@@ -12,16 +12,16 @@ class AuthController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('{{ $features.users.guard }}');
+        return Auth::guard('{{ $features.users.guard_name }}');
     }
 
     public function showLoginForm()
     {
-        return view('{{ $resources }}.{{ $features.users.table_name }}.login');
+        return view('pages.{{ $resources }}.{{ $features.users.table_name }}.login');
     }
 
     public function redirectPath()
     {
-        return route('{{ $routing.as }}home');
+        return route('{{ $routing.as }}{{ $features.users.table_name }}.index');
     }
 }

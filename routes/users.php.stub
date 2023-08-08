@@ -6,7 +6,7 @@
             });
 
         Route::middleware('auth:{{ $features.users.guard_name }}')
-            ->prefix('{{ table_name }}')
+            ->prefix('{{ $features.users.table_name }}')
             ->as('{{ $features.users.table_name }}.')
             ->group(function () {
                 Route::get('/', [App\Http\Controllers\{{ $namespace }}\{{ $features.users.controller_name }}::class, 'index'])->name('index');

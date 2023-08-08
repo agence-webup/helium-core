@@ -17,7 +17,7 @@ class Route extends Step
 
         // get the routes to publish
         $route = file_get_contents(__DIR__.'/../../../routes/'.$this->stub);
-        $route .= "\n\n".$this->marker;
+        $route .= "\n\n\t\t".$this->marker;
         if ($this->stub_processor !== null) {
             $route = ($this->stub_processor)($route);
         }
