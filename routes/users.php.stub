@@ -1,13 +1,15 @@
-        Route::get('/login', 'App\Http\Controllers\{{ $namespace }}\AuthController@showLoginForm')->name('login');
-        Route::post('/login', 'App\Http\Controllers\{{ $namespace }}\AuthController@login');
-        Route::get('/logout', 'App\Http\Controllers\{{ $namespace }}\AuthController@logout')->name('logout');
+        Route::middleware('guest:{{ $features.users.guard_name }}')
+            ->group(function () {
+                Route::get('/login', [App\Http\Controllers\{{ $namespace }}\AuthController::class, 'showLoginForm'])->name('login');
+                Route::post('/login', [App\Http\Controllers\{{ $namespace }}\AuthController::class, 'login']);
+                Route::get('/logout', [App\Http\Controllers\{{ $namespace }}\AuthController::class, 'logout'])->name('logout');
+            });
 
         Route::middleware('auth:{{ $features.users.guard_name }}')
             ->prefix('{{ table_name }}')
             ->as('{{ $features.users.table_name }}.')
             ->group(function () {
                 Route::get('/', [App\Http\Controllers\{{ $namespace }}\{{ $features.users.controller_name }}::class, 'index'])->name('index');
-                Route::get('/{id}', [App\Http\Controllers\{{ $namespace }}\{{ $features.users.controller_name }}::class, 'show'])->name('show');
 
                 Route::get('/create', [App\Http\Controllers\{{ $namespace }}\{{ $features.users.controller_name }}::class, 'create'])->name('create');
                 Route::post('/store', [App\Http\Controllers\{{ $namespace }}\{{ $features.users.controller_name }}::class, 'store'])->name('store');

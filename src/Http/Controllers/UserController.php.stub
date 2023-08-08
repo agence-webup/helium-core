@@ -5,6 +5,9 @@ namespace App\Http\Controllers\{{ $namespace }};
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Validation\Rules\Password;
+
 use App\Models\{{ $namespace }}\{{ $features.users.model_name }};
 
 class {{ $features.users.controller_name }} extends Controller
@@ -12,13 +15,6 @@ class {{ $features.users.controller_name }} extends Controller
     public function index()
     {
         return view('{{ $resources }}.pages.{{ $features.users.table_name }}.index');
-    }
-
-    public function show($id)
-    {
-        $user = {{ $features.users.model_name }}::findOrFail($id);
-
-        return view('{{ $resources }}.pages.{{ $features.users.table_name }}.show', compact('user'));
     }
 
     public function create()
@@ -38,6 +34,14 @@ class {{ $features.users.controller_name }} extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:{{ $features.users.table_name }},email',
+            'password' => [
+                'required',
+                Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->symbols(),
+            ]
         ]);
 
         $data['password'] = bcrypt(Str::random(16));
@@ -50,7 +54,20 @@ class {{ $features.users.controller_name }} extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'password' => [
+                'sometimes',
+                'nullable',
+                Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->symbols(),
+            ]
         ]);
+
+        if (Arr::has($data, 'password') && ($data['password'] == null || $data['password'] == '')) {
+            unset($data['password']);
+        }
 
         $user = {{ $features.users.model_name }}::findOrFail($id);
         $user->update($data);

@@ -81,7 +81,7 @@ return [
              * and determines the "as" (with an appended dot) and "prefix" of the routes.
              * ------------------------------------------------------------
              */
-            'table_name' => 'helium_user',
+            'table_name' => 'helium_users',
 
             /**
              * ------------------------------------------------------------

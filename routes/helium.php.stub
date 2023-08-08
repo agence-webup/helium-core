@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware({{ $routing.middleware }})
+Route::middleware(['web'])
     ->prefix('{{ $routing.prefix }}')
     ->as('{{ $routing.as }}')
     ->namespace('App\Http\Controllers\{{ $namespace }}')->group(function () {

@@ -1,0 +1,10 @@
+<x-helium-ui:form.input name="email"
+                        label="Email"
+                        type="text"
+                        placeholder="john.doe@example.test"
+                        :value="$user->email" />
+<x-helium-ui:form.input name="password"
+                        label="Mot de passe"
+                        type="password"
+                        placeholder="Mot de passe complexe, chiffres symboles et lettres en toutes casses"
+                        value="" />

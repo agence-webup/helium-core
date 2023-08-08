@@ -16,8 +16,10 @@ class HeliumCoreServiceProvider extends PackageServiceProvider
             ->hasViews('helium-core')
             ->hasCommand(Publish::class);
 
-        if (file_exists(base_path('routes/helium.php'))) {
-            $this->loadRoutesFrom(base_path('routes').'/helium.php');
+        $filename = config('helium-core.routing.filename');
+        $routes = base_path("routes/{$filename}.php");
+        if (file_exists($routes)) {
+            $this->loadRoutesFrom($routes);
         }
     }
 }
