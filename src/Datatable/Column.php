@@ -65,8 +65,8 @@ class Column
         $column = new self();
         $column->name = $name;
         $column->isCustom = true;
-        $column->rawSelect = null;
-        $column->alias = '';
+        $column->rawSelect = $name;
+        $column->alias = $name;
         $column->label = ucfirst($column->name);
 
         return $column;

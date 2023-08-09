@@ -3,11 +3,7 @@
 namespace Webup\HeliumCore\Datatable;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Datatable extends Component
@@ -126,19 +122,6 @@ class Datatable extends Component
             if (! $column->isCustom) {
                 if ($column->isRaw) {
                     $this->query->addSelect(DB::raw($column->rawSelect));
-                } elseif (str_contains($column->name, '.')) {
-                    $relations = explode('.', Str::before($column->name, ':'));
-                    $relationName = $relations[0];
-                    $relationQuery = $this->query->getRelation($relationName);
-                    if ($relationQuery instanceof HasMany || $relationQuery instanceof HasManyThrough || $relationQuery instanceof BelongsToMany) {
-                        $this->query->customWithAggregate($relationName, Str::after($column->name, ':') ?? 'count', $relations[1], $column->alias);
-                    } else {
-                        $this->addSelectWithRelation($column);
-                        // todo gérer les contraintes
-                        // cette ligne est fonctionne pour les HasOne avec contrainte mais le réquete n'est pas géniale
-                        // https://devblogs.microsoft.com/premier-developer/using-join-with-max-to-write-efficient-queries/
-                        // $this->query->custom($relationName, last($relations), $column->alias);
-                    }
                 } else {
                     $table = $this->model->getTable();
                     $col = $column->name;
@@ -150,30 +133,6 @@ class Datatable extends Component
         }
     }
 
-    private function addSelectWithRelation($column)
-    {
-        $relations = explode('.', Str::before($column->name, ':'));
-        $relatedQuery = $this->baseQuery();
-        $table = null;
-
-        $last = count($relations) - 1;
-        foreach ($relations as $i => $relationName) {
-            $isRelation = $i < $last;
-            if ($isRelation) {
-                $table = $relatedQuery->getRelation($relationName)->getRelated()->getTable();
-                $useThrough = collect($this->query->getQuery()->joins)
-                    ->pluck('table')
-                    ->contains($table);
-
-                $relatedQuery = $this->query->joinRelation($relationName, null, 'left', $useThrough, $relatedQuery);
-            } else {
-                $col = $relationName;
-                $alias = $column->alias;
-                $this->query->addSelect(DB::raw($table.'.'.$col.' as `'.$alias.'`'));
-            }
-        }
-    }
-
     // todo gérer la recherche avec tous les type de relations
     private function addFilters()
     {
@@ -182,19 +141,6 @@ class Datatable extends Component
                 foreach (explode(' ', $this->search) as $key => $word) {
                     $subquery->where(function ($subsubquery) use ($word) {
                         foreach ($this->getSearchableColumns() as $key => $column) {
-                            // if ($column->isRelation()) {
-                            //     $relations = explode('.', Str::before($column->name, ':'));
-                            //     $relationName = $relations[0];
-                            //     $relationQuery = $this->query->getRelation($relationName);
-
-                            //     if ($relationQuery instanceof HasOne || $relationQuery instanceof BelongsTo) {
-                            //         $table = $this->query->getRelationTable($relationName);
-                            //         $column = $relations[1];
-                            //         return $subsubquery->whereRaw("`$table`.`$column` like '%" . $word . "%'");
-                            //     } else {
-                            //         return $subsubquery->whereRaw("$column->name like '%" . $word . "%'");
-                            //     }
-                            // }
                             return $subsubquery->whereRaw("$column->name like '%".$word."%'");
                         }
                     });
