@@ -3,7 +3,11 @@
 namespace Webup\HeliumCore\Datatable;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Datatable extends Component
@@ -119,54 +123,56 @@ class Datatable extends Component
         $this->query->addSelect($this->model->getKeyName());
 
         foreach ($this->columns() as $column) {
-            if ($column->isRaw) {
-                $this->query->addSelect(DB::raw($column->rawSelect));
-            } elseif (str_contains($column->name, '.')) {
-                throw new \Exception('Relationships not supported yet');
-                // $relations = explode('.', Str::before($column->name, ':'));
-                // $relationName = $relations[0];
-                // $relationQuery = $this->query->getRelation($relationName);
-                // if ($relationQuery instanceof HasMany || $relationQuery instanceof HasManyThrough || $relationQuery instanceof BelongsToMany) {
-                //     $this->query->customWithAggregate($relationName, Str::after($column->name, ':') ?? 'count', $relations[1], $column->name);
-                // } else {
-                //     $this->addSelectWithRelation($column);
-                //     // todo gérer les contraintes
-                //     // cette ligne est fonctionne pour les HasOne avec contrainte mais le réquete n'est pas géniale
-                //     // https://devblogs.microsoft.com/premier-developer/using-join-with-max-to-write-efficient-queries/
-                //     // $this->query->custom($relationName, last($relations), $column->alias);
-                // }
-            } else {
-                $table = $this->model->getTable();
-                $col = $column->name;
-                $alias = $column->alias;
-                $this->query->addSelect(DB::raw("$table.$col as $alias"));
+            if (! $column->isCustom) {
+                if ($column->isRaw) {
+                    $this->query->addSelect(DB::raw($column->rawSelect));
+                } elseif (str_contains($column->name, '.')) {
+                    $relations = explode('.', Str::before($column->name, ':'));
+                    $relationName = $relations[0];
+                    $relationQuery = $this->query->getRelation($relationName);
+                    if ($relationQuery instanceof HasMany || $relationQuery instanceof HasManyThrough || $relationQuery instanceof BelongsToMany) {
+                        $this->query->customWithAggregate($relationName, Str::after($column->name, ':') ?? 'count', $relations[1], $column->alias);
+                    } else {
+                        $this->addSelectWithRelation($column);
+                        // todo gérer les contraintes
+                        // cette ligne est fonctionne pour les HasOne avec contrainte mais le réquete n'est pas géniale
+                        // https://devblogs.microsoft.com/premier-developer/using-join-with-max-to-write-efficient-queries/
+                        // $this->query->custom($relationName, last($relations), $column->alias);
+                    }
+                } else {
+                    $table = $this->model->getTable();
+                    $col = $column->name;
+                    $alias = $column->alias;
+                    $this->query->addSelect(DB::raw("$table.$col as $alias"));
+                }
             }
+
         }
     }
 
-    // private function addSelectWithRelation($column)
-    // {
-    //     $relations = explode('.', Str::before($column->name, ':'));
-    //     $relatedQuery = $this->baseQuery();
-    //     $table = null;
+    private function addSelectWithRelation($column)
+    {
+        $relations = explode('.', Str::before($column->name, ':'));
+        $relatedQuery = $this->baseQuery();
+        $table = null;
 
-    //     $last = count($relations) - 1;
-    //     foreach ($relations as $i => $relationName) {
-    //         $isRelation = $i < $last;
-    //         if ($isRelation) {
-    //             $table = $relatedQuery->getRelation($relationName)->getRelated()->getTable();
-    //             $useThrough = collect($this->query->getQuery()->joins)
-    //                 ->pluck('table')
-    //                 ->contains($table);
+        $last = count($relations) - 1;
+        foreach ($relations as $i => $relationName) {
+            $isRelation = $i < $last;
+            if ($isRelation) {
+                $table = $relatedQuery->getRelation($relationName)->getRelated()->getTable();
+                $useThrough = collect($this->query->getQuery()->joins)
+                    ->pluck('table')
+                    ->contains($table);
 
-    //             $relatedQuery = $this->query->joinRelation($relationName, null, 'left', $useThrough, $relatedQuery);
-    //         } else {
-    //             $col = $relationName;
-    //             $alias = $column->alias;
-    //             $this->query->addSelect(DB::raw($table . '.' . $col . ' as `' . $alias . '`'));
-    //         }
-    //     }
-    // }
+                $relatedQuery = $this->query->joinRelation($relationName, null, 'left', $useThrough, $relatedQuery);
+            } else {
+                $col = $relationName;
+                $alias = $column->alias;
+                $this->query->addSelect(DB::raw($table.'.'.$col.' as `'.$alias.'`'));
+            }
+        }
+    }
 
     // todo gérer la recherche avec tous les type de relations
     private function addFilters()

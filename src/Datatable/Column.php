@@ -11,6 +11,8 @@ class Column
 
     public bool $isRaw = false;
 
+    public bool $isCustom = false;
+
     public string $name;
 
     public string $alias;
@@ -58,6 +60,18 @@ class Column
         return $column;
     }
 
+    public static function add(string $name): self
+    {
+        $column = new self();
+        $column->name = $name;
+        $column->isCustom = true;
+        $column->rawSelect = null;
+        $column->alias = '';
+        $column->label = ucfirst($column->name);
+
+        return $column;
+    }
+
     public function headerClasses(string|array $headerClasses): self
     {
         if (is_string($headerClasses)) {
@@ -74,6 +88,18 @@ class Column
             $classes = explode(' ', $classes);
         }
         $this->classes = $classes;
+
+        return $this;
+    }
+
+    public function columnClasses(string|array $classes): self
+    {
+        if (is_string($classes)) {
+            $classes = explode(' ', $classes);
+        }
+
+        $this->classes = $classes;
+        $this->headerClasses = $classes;
 
         return $this;
     }
