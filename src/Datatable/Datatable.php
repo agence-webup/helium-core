@@ -141,7 +141,7 @@ class Datatable extends Component
                 foreach (explode(' ', $this->search) as $key => $word) {
                     $subquery->where(function ($subsubquery) use ($word) {
                         foreach ($this->getSearchableColumns() as $key => $column) {
-                            return $subsubquery->whereRaw("$column->name like '%".$word."%'");
+                            $subsubquery->orWhereRaw("$column->name like '%".$word."%'");
                         }
                     });
                 }

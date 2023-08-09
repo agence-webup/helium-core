@@ -19,7 +19,7 @@
                         @include('helium-core::datatable.header', [
                             'label' => $column->label,
                             'class' => implode(' ', $column->headerClasses),
-                            'sortable' => $column->sortable ? $column->alias : '',
+                            'sortable' => $column->sortable,
                         ])
                     @endif
                 @endforeach

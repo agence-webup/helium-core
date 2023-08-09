@@ -25,7 +25,7 @@ class Column
 
     public array $headerClasses = [];
 
-    public bool $sortable = false;
+    public ?string $sortable = null;
 
     public bool $searchable = false;
 
@@ -44,7 +44,7 @@ class Column
         return $column;
     }
 
-    public static function name(string $name): self
+    public static function select(string $name): self
     {
         $column = new self();
         $column->name = $name;
@@ -135,9 +135,13 @@ class Column
         return $this;
     }
 
-    public function sortable(bool $sortable = true): self
+    public function sortable(string $sortable = null): self
     {
-        $this->sortable = $sortable;
+        if ($sortable === null) {
+            $this->sortable = $this->alias;
+        } else {
+            $this->sortable = $sortable;
+        }
 
         return $this;
     }
