@@ -1,6 +1,6 @@
 # Datatable
 
-For the moment, we can only request on one table and doesn't support relations.
+For the moment, we can only have one datatable per view.
 
 
 ## Create a livewire component
@@ -27,12 +27,12 @@ class CategoryDatatable extends Datatable
     public function columns()
     {
         return [
-            Column::name('name')
+            Column::select('name')
                 ->label('Name')
                 ->sortable()
                 ->searchable(),
 
-            Column::name('status')
+            Column::select('status')
                 ->label('Status')
                 ->sortable()
                 ->searchable()
@@ -46,7 +46,7 @@ class CategoryDatatable extends Datatable
                     ));
                 }),
 
-            Column::name('highlighted')
+            Column::select('highlighted')
                 ->label('highlighted')
                 ->sortable()
                 ->searchable()

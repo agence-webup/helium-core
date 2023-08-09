@@ -101,7 +101,6 @@ class Datatable extends Component
     }
 
     // ------------------ query builder ------------------
-
     private function buildDatabaseQuery()
     {
         $this->query = $this->baseQuery();
@@ -113,27 +112,22 @@ class Datatable extends Component
         return $this->query;
     }
 
-    // todo gérer les nested relation
     private function addSelect()
     {
-        $this->query->addSelect($this->model->getKeyName());
-
         foreach ($this->columns() as $column) {
             if (! $column->isCustom) {
                 if ($column->isRaw) {
                     $this->query->addSelect(DB::raw($column->rawSelect));
                 } else {
                     $table = $this->model->getTable();
-                    $col = $column->name;
-                    $alias = $column->alias;
-                    $this->query->addSelect(DB::raw("$table.$col as $alias"));
+                    $alias = $table.'_'.$column->alias;
+                    $this->query->addSelect(DB::raw("`$column->name` as `$alias`"));
                 }
             }
 
         }
     }
 
-    // todo gérer la recherche avec tous les type de relations
     private function addFilters()
     {
         $this->query->when($this->search, function ($query) {

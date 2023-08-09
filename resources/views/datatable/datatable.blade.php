@@ -7,9 +7,14 @@
         </div>
     @endif
 
-    @if ($this->hasActiveFilters())
+    {{-- @if ($this->hasActiveFilters())
         {{ $this->getActiveFiltersCount() }} Filtres actifs
     @endif
+
+    <button x-data @click="$dispatch('open-sidebar', 'test')">
+        Open Menu
+    </button> --}}
+
 
     <table class="table">
         <thead>
