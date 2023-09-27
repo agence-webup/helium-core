@@ -1,0 +1,27 @@
+@layer utilities {
+  .table {
+    @apply min-w-full divide-y divide-gray-300 w-full;
+  }
+
+  .table thead {
+    @apply bg-gray-50 font-medium;
+  }
+
+  .table tbody td,
+  .table thead th {
+    @apply p-3;
+  }
+
+  .table tbody tr:nth-child(even) {
+    @apply bg-gray-50;
+  }
+
+  .table tbody tr[data-link]:hover {
+    @apply bg-slate-200 cursor-pointer;
+  }
+
+  .table input,
+  .table select {
+    display: inline-flex;
+  }
+}

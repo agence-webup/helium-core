@@ -1,0 +1,17 @@
+@layer components {
+  .f-input {
+    @apply rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
+  }
+
+  .f-select {
+    @apply rounded-md border-opacity-100;
+  }
+
+  .f-required {
+    @apply text-red-600;
+  }
+
+  .f-error {
+    @apply text-red-600 mt-1;
+  }
+}

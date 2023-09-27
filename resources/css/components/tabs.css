@@ -1,0 +1,5 @@
+.tab-active {
+  border-color: #228ae6;
+  box-shadow: 0 5px 16px -12px rgba(34, 138, 230, .98), 0 8px 21px -9px rgba(34, 138, 230, .4), 0 1px 11px -7px rgba(34, 138, 230, .25), 0 0 4px -8px rgba(34, 138, 230, .1);
+  color: #228ae6;
+}
