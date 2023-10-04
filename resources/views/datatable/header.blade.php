@@ -1,7 +1,7 @@
 @props(['class' => '', 'label', 'sortable' => null])
 
-<th @if ($sortable) wire:click="sortBy('{{ $sortable }}')" @endif @class([$class, 'cursor-pointer' => $sortable])
-    class="{{ $class }} p-3 text-sm font-semibold text-gray-900">
+<th @if ($sortable) wire:click="updateSortBy('{{ $sortable }}')" @endif
+    @class([$class, 'cursor-pointer' => $sortable]) class="{{ $class }} p-3 text-sm font-semibold text-gray-900">
     <span class="inline-flex items-center">
         {{ $label }}
         @if ($sortable)

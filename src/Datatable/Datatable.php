@@ -12,6 +12,8 @@ class Datatable extends Component
 
     public string $sharedKey;
 
+    public string $queryPrefix = '';
+
     public string $search = '';
 
     public array $customFilters = [];
@@ -26,12 +28,24 @@ class Datatable extends Component
 
     protected $listeners = ['updateFromSidebar'];
 
+    public array $clickableProperties = [
+        'id',
+    ];
+
+    public function queryString()
+    {
+        return [
+            'search' => ['except' => '', 'as' => $this->queryPrefix.'search'],
+        ];
+    }
+
     // ------------------ livewire lifecycle ------------------
 
     public function mount()
     {
         $this->customFilters = session()->get('datatable.'.$this->sharedKey, []);
         $this->model = $this->baseQuery()->getModel();
+        $this->search = request()->get($this->queryPrefix.'search') ?? '';
     }
 
     public function render()
@@ -41,12 +55,12 @@ class Datatable extends Component
 
     public function updatingSearch()
     {
-        $this->resetPage();
+        $this->resetPage($this->getPageQueryName());
     }
 
     public function updatingPaginationSize()
     {
-        $this->resetPage();
+        $this->resetPage($this->getPageQueryName());
     }
 
     // ------------------ listeners ------------------
@@ -54,7 +68,7 @@ class Datatable extends Component
     public function updateFromSidebar()
     {
         $this->customFilters = session()->get('datatable.'.$this->sharedKey, []);
-        $this->resetPage();
+        $this->resetPage($this->getPageQueryName());
     }
 
     // ------------------ blade methods ------------------
@@ -62,7 +76,7 @@ class Datatable extends Component
     public function result()
     {
         if (! $this->data) {
-            $this->data = $this->buildDatabaseQuery()->paginate($this->paginationSize);
+            $this->data = $this->buildDatabaseQuery()->paginate($this->paginationSize, ['*'], $this->getPageQueryName());
         }
 
         return $this->data;
@@ -169,6 +183,22 @@ class Datatable extends Component
         });
     }
 
+    public function dispatchClick($model)
+    {
+        $this->onRowClick(json_decode($model));
+    }
+
+    public function formatModelForClickable($model)
+    {
+        $result = [];
+
+        foreach ($this->clickableProperties as $property) {
+            $result[$property] = $model->$property;
+        }
+
+        return json_encode($result);
+    }
+
     // ------------------ methods to override ------------------
 
     public function baseQuery()
@@ -194,5 +224,10 @@ class Datatable extends Component
     public function getSideBar()
     {
         // throw new \Exception("You must override the getSideBar method");
+    }
+
+    public function onRowClick($model)
+    {
+        // throw new \Exception("You must override the onRowClick method");
     }
 }

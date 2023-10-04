@@ -32,7 +32,7 @@
         </thead>
         <tbody>
             @foreach ($this->result() as $result)
-                <tr {!! $this->getDataLinkAttr($result) !!}>
+                <tr wire:click="dispatchClick('{{ $this->formatModelForClickable($result) }}')">
                     @foreach ($this->columns() as $column)
                         @if (!$column->hidden)
                             <td class="{{ implode(' ', $column->classes) }}">

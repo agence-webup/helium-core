@@ -12,14 +12,27 @@ trait WithPaginationAndSorting
 
     public string $sortDirection = 'asc';
 
-    public function sortBy($field)
+    public function mountWithPaginationAndSorting()
+    {
+        $this->sortBy = request()->get($this->queryPrefix.'sort') ?? '';
+        $this->sortDirection = request()->get($this->queryPrefix.'sortd', $this->sortDirection) ?? '';
+    }
+
+    public function queryStringWithPaginationAndSorting()
+    {
+        return [
+            'sortBy' => ['except' => 'name', 'as' => $this->queryPrefix.'sort'],
+            'sortDirection' => ['except' => 'asc', 'as' => $this->queryPrefix.'sortd'],
+        ];
+    }
+
+    public function updateSortBy($field)
     {
         $this->sortDirection = $this->sortBy === $field
             ? $this->reverseSqlOrder($this->sortDirection)
             : (new (get_called_class())())->sortDirection;
-
         $this->sortBy = $field;
-        $this->resetPage();
+        $this->resetPage($this->getPageQueryName());
     }
 
     private function reverseSqlOrder(string $order): string
