@@ -1,4 +1,4 @@
-@extends('helium-ui::layout.auth')
+@extends('hui::layout.auth')
 
 @section('content')
     <div class="rounded-md bg-white p-5 shadow">
@@ -6,11 +6,11 @@
               method="post">
             @csrf
 
-            <x-helium-ui::form.input class="w-72"
+            <x-hui::form.input class="w-72"
                                      name="email"
                                      placeholder="email"
                                      type="text" />
-            <x-helium-ui::form.input class="w-72"
+            <x-hui::form.input class="w-72"
                                      name="password"
                                      placeholder="Mot de passe"
                                      type="password" />

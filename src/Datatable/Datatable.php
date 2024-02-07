@@ -199,6 +199,11 @@ class Datatable extends Component
         return json_encode($result);
     }
 
+    public function getPageQueryName()
+    {
+        return $this->queryPrefix.'page';
+    }
+
     // ------------------ methods to override ------------------
 
     public function baseQuery()

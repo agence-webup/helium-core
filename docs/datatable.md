@@ -38,7 +38,7 @@ class CategoryDatatable extends Datatable
                 ->searchable()
                 ->format(function ($value) {
                     return new HtmlString(Blade::render(
-                        '<x-helium-ui::tag label="{{ $label }}" modifier="{{ $color }}" />',
+                        '<x-hui::tag label="{{ $label }}" modifier="{{ $color }}" />',
                         [
                             'label' => $value->getLabel(),
                             'color' => $value->getColor(),
@@ -53,11 +53,11 @@ class CategoryDatatable extends Datatable
                 ->format(function ($value) {
                     if ($value) {
                         return new HtmlString(Blade::render(
-                            '<x-helium-ui::tag label="✔" modifier="green" />',
+                            '<x-hui::tag label="✔" modifier="green" />',
                         ));
                     }
                     return new HtmlString(Blade::render(
-                        '<x-helium-ui::tag label="✘" modifier="red" />',
+                        '<x-hui::tag label="✘" modifier="red" />',
 
                     ));
                 }),
