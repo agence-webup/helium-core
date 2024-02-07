@@ -13,7 +13,7 @@ class HeliumCoreServiceProvider extends PackageServiceProvider
         $package
             ->name('helium-core')
             ->hasConfigFile('helium-core')
-            ->hasViews('helium-core')
+            ->hasViews('hui')
             ->hasCommand(Publish::class);
 
         $filename = config('helium-core.routing.filename');

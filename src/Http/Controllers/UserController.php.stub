@@ -47,7 +47,7 @@ class {{ $features.users.controller_name }} extends Controller
         $data['password'] = bcrypt(Str::random(16));
         {{ $features.users.model_name }}::create($data);
 
-        return redirect()->route('{{ $routing.as }}{{ $features.users.table_name }}.index');
+        return redirect()->route('{{ $routing->as }}{{ $features.users.table_name }}.index');
     }
 
     public function update(Request $request, $id)
@@ -73,13 +73,13 @@ class {{ $features.users.controller_name }} extends Controller
         $user->update($data);
         $user->save();
 
-        return redirect()->route('{{ $routing.as }}{{ $features.users.table_name }}.show', $user->id);
+        return redirect()->route('{{ $routing->as }}{{ $features.users.table_name }}.show', $user->id);
     }
 
     public function destroy($id)
     {
         {{ $features.users.model_name }}::findOrFail($id)->delete();
 
-        return redirect()->route('{{ $routing.as }}{{ $features.users.table_name }}.index');
+        return redirect()->route('{{ $routing->as }}{{ $features.users.table_name }}.index');
     }
 }

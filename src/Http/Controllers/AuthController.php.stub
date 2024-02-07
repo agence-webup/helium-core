@@ -22,6 +22,6 @@ class AuthController extends Controller
 
     public function redirectPath()
     {
-        return route('{{ $routing.as }}{{ $features.users.table_name }}.index');
+        return route('{{ $routing->as }}{{ $features.users.table_name }}.index');
     }
 }

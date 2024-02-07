@@ -50,7 +50,7 @@ class Datatable extends Component
 
     public function render()
     {
-        return view('helium-core::datatable.datatable');
+        return view('hui::datatable.datatable');
     }
 
     public function updatingSearch()
@@ -171,7 +171,7 @@ class Datatable extends Component
 
     public function paginationView()
     {
-        return 'helium-core::datatable.pagination';
+        return 'hui::datatable.pagination';
     }
 
     // ------------------ helper methods ------------------
