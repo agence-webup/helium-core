@@ -70,7 +70,7 @@ class Column
     /**
      * Create a column that represents a raw SQL select statement.
      *
-     * @param  string  $name The raw SQL select statement.
+     * @param  string  $name  The raw SQL select statement.
      */
     public static function raw(string $name): self
     {
@@ -88,7 +88,7 @@ class Column
     /**
      * Create a column that represents a regular SQL select statement.
      *
-     * @param  string  $name The name of the column.
+     * @param  string  $name  The name of the column.
      */
     public static function select(string $name): self
     {
@@ -109,7 +109,7 @@ class Column
     /**
      * Create a column that represents a column that is not part of the SQL select statement, but is added to the data table.
      *
-     * @param  string  $name The name of the column.
+     * @param  string  $name  The name of the column.
      */
     public static function add(string $name): self
     {
@@ -126,7 +126,7 @@ class Column
     /**
      * Set the formatter function for the column.
      *
-     * @param  Closure  $formatter The formatter function.
+     * @param  Closure  $formatter  The formatter function.
      */
     public function formatter(Closure $formatter): self
     {
@@ -138,7 +138,7 @@ class Column
     /**
      * Set the label for the column.
      *
-     * @param  string  $label The label for the column.
+     * @param  string  $label  The label for the column.
      */
     public function label(string $label): self
     {
@@ -150,7 +150,7 @@ class Column
     /**
      * Set the classes for the column.
      *
-     * @param  string|array  $classes The classes for the column.
+     * @param  string|array  $classes  The classes for the column.
      */
     public function classes(string|array $classes): self
     {
@@ -165,7 +165,7 @@ class Column
     /**
      * Set the header classes for the column.
      *
-     * @param  string|array  $headerClasses The header classes for the column.
+     * @param  string|array  $headerClasses  The header classes for the column.
      */
     public function headerClasses(string|array $headerClasses): self
     {
@@ -180,7 +180,7 @@ class Column
     /**
      * Set the classes for both the column and the header.
      *
-     * @param  string|array  $classes The classes for the column and header.
+     * @param  string|array  $classes  The classes for the column and header.
      */
     public function columnClasses(string|array $classes): self
     {
@@ -230,9 +230,9 @@ class Column
     /**
      * Set the sortable property for the column.
      *
-     * @param  string|null  $sortable The sortable property for the column.
+     * @param  string|null  $sortable  The sortable property for the column.
      */
-    public function sortable(string $sortable = null): self
+    public function sortable(?string $sortable = null): self
     {
         if ($sortable === null) {
             $this->sortable = $this->alias;
@@ -246,7 +246,7 @@ class Column
     /**
      * Set the searchable property for the column.
      *
-     * @param  bool  $searchable The searchable property for the column.
+     * @param  bool  $searchable  The searchable property for the column.
      */
     public function searchable(bool $searchable = true): self
     {
@@ -258,7 +258,7 @@ class Column
     /**
      * Set the hidden property for the column.
      *
-     * @param  bool  $hidden The hidden property for the column.
+     * @param  bool  $hidden  The hidden property for the column.
      */
     public function hidden(bool $hidden = true): self
     {
@@ -270,7 +270,7 @@ class Column
     /**
      * Set the formatter function for the column.
      *
-     * @param  Closure  $formatter The formatter function.
+     * @param  Closure  $formatter  The formatter function.
      */
     public function format(Closure $formatter): self
     {
