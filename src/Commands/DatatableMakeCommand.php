@@ -26,6 +26,6 @@ class DatatableMakeCommand extends GeneratorCommand implements PromptsForMissing
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Livewire\Admin';
+        return $rootNamespace.'\Http\Livewire\Admin';
     }
 }
