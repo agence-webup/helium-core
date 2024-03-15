@@ -18,14 +18,10 @@ class HeliumCoreServiceProvider extends PackageServiceProvider
 
         $this->publishes([
             $this->package->basePath('/../resources/views/components') => base_path('resources/views/vendor/hui/components'),
-            // $this->package->basePath('/../resources/views/datatable') => base_path('resources/views/vendor/hui/datatable'),
-            // $this->package->basePath('/../resources/views/layout') => base_path('resources/views/vendor/hui/layout'),
         ], 'helium-components');
 
         $this->loadViewsFrom($this->package->basePath('/../resources/views'), 'hui');
 
-        // $filename = config('helium-core.routing.filename');
-        // $routes = base_path("routes/$filename.php");
         $routes = base_path('routes/admin.php');
 
         if (file_exists($routes)) {
