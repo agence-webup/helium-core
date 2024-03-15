@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('{{ $features.users.table_name }}', function (Blueprint $table) {
+        Schema::create('admin_users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->rememberToken();
@@ -20,6 +20,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('{{ $features.users.table_name }}');
+        Schema::dropIfExists('admin_users');
     }
 };

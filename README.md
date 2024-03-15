@@ -26,16 +26,24 @@ You can publish features as you go with:
 php artisan helium:publish
 ```
 
+Publishing a feature will copy paste every file associated with it.
+This includes:
+- config, controllers, models
+- migrations, routes
+- js, css
+- x-components, livewire components, blade views
+
 ## :warning: Configuration :warning:
 
-The published config file handles all specific configuration prior to publishing a feature.
-Once a feature is published, the only way to update its configurable properties is manual.
-
-Thus, make sure to configure this package to suit your preferences before starting to publish anything.
+Make sure to configure this package to suit your preferences before starting to publish anything.
 
 ## Features
 
-### User
+### Admin User management
+
+This feature packs an AdminUser model along with its migration,
+a default `{email: 'admin', password: 'password'}` entry,
+and CRUD routes + pages.
 
 ```bash
 php artisan helium:publish
@@ -50,17 +58,17 @@ return [
     ...
     'guards' => [
         ...
-        'your_configured_guard_name_here' => [
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'helium_users_table_name',
+            'provider' => 'admin_users',
         ],
     ],
 
     'providers' => [
         ...
-        'helium_users_table_name' => [
+        'admin_users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\YourConfiguredNamespace\YourConfiguredClassName::class,
+            'model' => App\Models\Admin\AdminUser::class,
         ],
     ],
 ];
