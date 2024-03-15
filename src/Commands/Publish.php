@@ -4,7 +4,11 @@ namespace Webup\HeliumCore\Commands;
 
 use Illuminate\Foundation\Console\VendorPublishCommand;
 use Symfony\Component\Finder\SplFileInfo;
-use Webup\HeliumCore\Features\UserFeature;
+use Webup\HeliumCore\Features\AdminUserFeature;
+
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\note;
+use function Laravel\Prompts\select;
 
 class Publish extends VendorPublishCommand
 {
@@ -15,15 +19,14 @@ class Publish extends VendorPublishCommand
     public $description = 'Publish Helium features.';
 
     public array $features = [
-        'Users' => UserFeature::class,
+        'Users' => AdminUserFeature::class,
     ];
 
     public function handle(): int
     {
-        $choice = $this->choice(
+        $choice = select(
             'What do you want to publish?',
             array_merge(array_keys($this->features), ['All']),
-            0
         );
 
         $features = ($choice === 'All')
@@ -32,7 +35,7 @@ class Publish extends VendorPublishCommand
 
         foreach ($features as $feature) {
             $feature::make()->handle($this);
-            $this->info('Feature '.$choice.' published');
+            info('Feature '.$choice.' published');
         }
 
         return self::SUCCESS;
@@ -60,9 +63,10 @@ class Publish extends VendorPublishCommand
 
             $this->files->put($to, $content);
 
-            $this->comment("Writing to $to.");
+            note("Writing to $to.");
         } else {
             if ($this->option('existing')) {
+
                 $this->components->twoColumnDetail(sprintf(
                     'File [%s] does not exist',
                     str_replace(base_path().'/', '', $to),
