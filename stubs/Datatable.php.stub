@@ -1,0 +1,31 @@
+<?php
+
+namespace {{ namespace }};
+
+use Webup\HeliumCore\Datatable\Column;
+use Webup\HeliumCore\Datatable\Datatable;
+
+class {{ class }} extends Datatable
+{
+    public function baseQuery()
+    {
+        // ex: return User::query();
+        throw new \Exception('baseQuery() not implemented !');
+    }
+
+    public function link($model)
+    {
+        // ex: return route('my-model.edit', $model->id)
+        throw new \Exception('link() not implemented !');
+    }
+
+    public function columns()
+    {
+        return [
+            Column::select('id')
+                ->label('ID')
+                ->sortable()
+                ->searchable(),
+        ];
+    }
+}
