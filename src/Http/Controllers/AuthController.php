@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\{{ $namespace }};
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,16 +12,16 @@ class AuthController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('{{ $features.users.guard_name }}');
+        return Auth::guard('admin');
     }
 
     public function showLoginForm()
     {
-        return view('pages.{{ $resources }}.{{ $features.users.table_name }}.login');
+        return view('admin.admin_user.login');
     }
 
     public function redirectPath()
     {
-        return route('{{ $routing->as }}{{ $features.users.table_name }}.index');
+        return route('admin.admin_user.index');
     }
 }

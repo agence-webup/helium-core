@@ -17,7 +17,7 @@ class Controller extends Step
 
         $command->publish(
             $content,
-            base_path('app/Http/Controllers/'.config('helium-core.namespace').'/'.$this->filename)
+            base_path('app/Http/Controllers/Admin/'.$this->filename)
         );
     }
 

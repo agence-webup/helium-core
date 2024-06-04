@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible"
           content="ie=edge">
     @yield('css')
+    @stack('css-stack')
+    {{-- todo @val: this path won't work in a real environment --}}
     @vite('packages/helium-core/resources/css/app.css')
     <title>Helium</title>
 </head>
@@ -30,8 +32,10 @@
             </div>
         </div>
     </main>
+    {{-- todo @val: this path won't work in a real environment --}}
     @vite('packages/helium-core/resources/js/app.js')
     @yield('js')
+    @stack('js-stack')
 </body>
 
 </html>

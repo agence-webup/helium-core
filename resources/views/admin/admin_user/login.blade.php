@@ -2,18 +2,18 @@
 
 @section('content')
     <div class="rounded-md bg-white p-5 shadow">
-        <form action="{{ route('{{ $routing.as }}login') }}"
+        <form action="{{ route('admin.login') }}"
               method="post">
             @csrf
 
             <x-hui::form.input class="w-72"
-                                     name="email"
-                                     placeholder="email"
-                                     type="text" />
+                               name="email"
+                               placeholder="email"
+                               type="text" />
             <x-hui::form.input class="w-72"
-                                     name="password"
-                                     placeholder="Mot de passe"
-                                     type="password" />
+                               name="password"
+                               placeholder="Mot de passe"
+                               type="password" />
 
             <div class="mt-4">
                 <button type="submit"

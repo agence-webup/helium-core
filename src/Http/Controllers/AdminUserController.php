@@ -1,39 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\{{ $namespace }};
+namespace App\Http\Controllers\Admin;
 
+use App\Models\Admin\AdminUser;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
-use App\Models\{{ $namespace }}\{{ $features.users.model_name }};
-
-class {{ $features.users.controller_name }} extends Controller
+class AdminUserController extends Controller
 {
     public function index()
     {
-        return view(pages.'{{ $resources }}.{{ $features.users.table_name }}.index');
+        return view('admin.admin_user.index');
     }
 
     public function create()
     {
-        return view('pages.{{ $resources }}.{{ $features.users.table_name }}.create');
+        return view('admin.admin_user.create');
     }
 
     public function edit($id)
     {
-        $user = {{ $features.users.model_name }}::findOrFail($id);
+        $user = Adminuser::findOrFail($id);
 
-        return view('pages.{{ $resources }}.{{ $features.users.table_name }}.edit', compact('user'));
+        return view('admin.admin_user.edit', compact('user'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:{{ $features.users.table_name }},email',
+            'email' => 'required|email|unique:admin_users,email',
             'password' => [
                 'required',
                 Password::min(8)
@@ -41,13 +40,13 @@ class {{ $features.users.controller_name }} extends Controller
                     ->letters()
                     ->numbers()
                     ->symbols(),
-            ]
+            ],
         ]);
 
         $data['password'] = bcrypt(Str::random(16));
-        {{ $features.users.model_name }}::create($data);
+        AdminUser::create($data);
 
-        return redirect()->route('{{ $routing->as }}{{ $features.users.table_name }}.index');
+        return redirect()->route('admin.admin_user.index');
     }
 
     public function update(Request $request, $id)
@@ -62,24 +61,24 @@ class {{ $features.users.controller_name }} extends Controller
                     ->letters()
                     ->numbers()
                     ->symbols(),
-            ]
+            ],
         ]);
 
         if (Arr::has($data, 'password') && ($data['password'] == null || $data['password'] == '')) {
             unset($data['password']);
         }
 
-        $user = {{ $features.users.model_name }}::findOrFail($id);
+        $user = AdminUser::findOrFail($id);
         $user->update($data);
         $user->save();
 
-        return redirect()->route('{{ $routing->as }}{{ $features.users.table_name }}.show', $user->id);
+        return redirect()->route('admin.admin_user.show', $user->id);
     }
 
     public function destroy($id)
     {
-        {{ $features.users.model_name }}::findOrFail($id)->delete();
+        AdminUser::findOrFail($id)->delete();
 
-        return redirect()->route('{{ $routing->as }}{{ $features.users.table_name }}.index');
+        return redirect()->route('admin.admin_user.index');
     }
 }

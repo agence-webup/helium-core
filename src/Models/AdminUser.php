@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\{{ $namespace }};
+namespace App\Models\Admin;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class {{ $features.users.model_name }} extends Authenticatable
+class AdminUser extends Authenticatable
 {
-    protected $table = '{{ $features.users.table_name }}';
+    protected $table = 'admin_users';
 
     protected $hidden = [
         'password',

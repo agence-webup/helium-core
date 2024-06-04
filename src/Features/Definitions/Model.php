@@ -16,7 +16,7 @@ class Model extends Step
         }
         $command->publish(
             $content,
-            base_path('app/Models/'.config('helium-core.namespace').'/'.$this->filename)
+            base_path('app/Models/Admin/'.$this->filename)
         );
     }
 

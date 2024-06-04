@@ -51,15 +51,13 @@ class CategoryDatatable extends Datatable
                 ->sortable()
                 ->searchable()
                 ->format(function ($value) {
-                    if ($value) {
-                        return new HtmlString(Blade::render(
-                            '<x-hui::tag label="✔" modifier="green" />',
-                        ));
-                    }
-                    return new HtmlString(Blade::render(
-                        '<x-hui::tag label="✘" modifier="red" />',
+                    $label = $value ? '✔' : '✘';
+                    $modifier = $value ? 'green' : 'red';
 
-                    ));
+                    return new HtmlString(Blade::render(sprintf(
+                        '<x-hui::tag label="%s" modifier="%s" />',
+                        $label, $modifier
+                    )));
                 }),
         ];
     }

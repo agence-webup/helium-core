@@ -21,6 +21,6 @@
             Informations
         </x-slot:title>
 
-        @include('pages.{{ $resource }}.{{ $features . users . table_name }}.elements.form')
+        @include('pages.{{ $resource }}.{{ $features->users->table_name }}.elements.form')
     </x-hui::box>
 @endsection

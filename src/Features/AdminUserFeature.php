@@ -11,7 +11,7 @@ use Webup\HeliumCore\Features\Definitions\Model;
 use Webup\HeliumCore\Features\Definitions\Resource;
 use Webup\HeliumCore\Features\Definitions\Route;
 
-class UserFeature extends Feature
+class AdminUserFeature extends Feature
 {
     public static function make(): static
     {
@@ -19,20 +19,20 @@ class UserFeature extends Feature
             ->default_stub_processor(HeliumCore::getDefaultStubProcessor())
             ->migrations([
                 Migration::make()
-                    ->stub('helium_create_users_table.php.stub')
-                    ->filename('create_'.config('helium-core.features.users.table_name').'_table.php'),
+                    ->stub('helium_create_admin_users_table.php')
+                    ->filename('create_admin_users_table.php'),
                 Migration::make()
-                    ->stub('helium_create_default_user.php.stub')
-                    ->filename('create_default_'.config('helium-core.features.users.table_name').'.php'),
+                    ->stub('helium_create_default_admin_user.php')
+                    ->filename('create_default_admin_users.php'),
             ])
-            ->routes(Route::make()->stub('users.php.stub'))
-            ->resources(Resource::make()->stub('users')->directory(config('helium-core.features.users.table_name')))
+            ->routes(Route::make()->stub('admin_users.php'))
+            ->resources(Resource::make()->stub('admin_users')->directory('admin_users'))
             ->models([
-                Model::make()->stub('User.php.stub')->filename(config('helium-core.features.users.model_name').'.php'),
+                Model::make()->stub('AdminUser.php')->filename('AdminUser.php'),
             ])
             ->controllers([
-                Controller::make()->stub('AuthController.php.stub')->filename('AuthController.php'),
-                Controller::make()->stub('UserController.php.stub')->filename(config('helium-core.features.users.controller_name').'.php'),
+                Controller::make()->stub('AuthController.php')->filename('AuthController.php'),
+                Controller::make()->stub('AdminUserController.php')->filename('AdminUserController.php'),
             ])
             ->epilogue([
                 function (Publish $publish) {
