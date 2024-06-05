@@ -1,19 +1,19 @@
 <?php
 
-namespace Webup\HeliumCore\Facades;
+namespace Webup\Helium\Facades;
 
 use Closure;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Webup\HeliumCore\HeliumCore
+ * @see \Webup\Helium\Helium
  *
  * @method static Closure getDefaultStubProcessor()
  */
-class HeliumCore extends Facade
+class Helium extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Webup\HeliumCore\HeliumCore::class;
+        return \Webup\Helium\Helium::class;
     }
 }

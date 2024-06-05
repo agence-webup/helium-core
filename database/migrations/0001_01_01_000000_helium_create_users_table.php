@@ -8,11 +8,12 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('admin_users', function (Blueprint $table) {
+        Schema::create(config('helium.users.table'), function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->rememberToken();
 
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
         });
@@ -20,6 +21,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('admin_users');
+        Schema::dropIfExists(config('helium.users.table'));
     }
 };

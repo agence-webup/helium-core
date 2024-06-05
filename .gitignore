@@ -8,3 +8,9 @@ phpstan.neon
 testbench.yaml
 vendor
 node_modules
+vendor/
+
+node_modules/
+
+# MacOS specific
+.DS_Store

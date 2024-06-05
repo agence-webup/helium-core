@@ -1,10 +1,10 @@
 <?php
 
-namespace Webup\HeliumCore\Tests;
+namespace Webup\Helium\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Webup\HeliumCore\HeliumCoreServiceProvider;
+use Webup\Helium\HeliumServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,7 +20,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            HeliumCoreServiceProvider::class,
+            HeliumServiceProvider::class,
         ];
     }
 
