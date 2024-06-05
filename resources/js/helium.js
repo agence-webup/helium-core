@@ -1,40 +1,40 @@
 
-import { Notyf } from 'notyf'
-import 'notyf/notyf.min.css'
+// import { Notyf } from 'notyf'
+// import 'notyf/notyf.min.css'
 
 class Helium {
     constructor() {
         this.dropmics = []
-        this.notif = new Notyf({
-            duration: 10000,
-            dismissible: true,
-            types: [
-                {
-                    type: 'success',
-                    background: '#E6F6F4',
-                    className: 'text-[#006355] border-[#00A38C] border-l-2',
-                    icon: false
-                },
-                {
-                    type: 'error',
-                    background: '#FCEAEA',
-                    className: 'text-[#891E1E] border-[#E03131] border-l-2',
-                    icon: false
-                },
-                {
-                    type: 'warning',
-                    background: '#fed7aa',
-                    className: 'text-[#5E4702] border-[#FFC107] border-l-2',
-                    icon: false
-                },
-                {
-                    type: 'info',
-                    background: '#E9F3FD',
-                    className: 'text-[#15548C] border-[#228AE6] border-l-2',
-                    icon: false
-                }
-            ]
-        })
+        // this.notif = new Notyf({
+        //     duration: 10000,
+        //     dismissible: true,
+        //     types: [
+        //         {
+        //             type: 'success',
+        //             background: '#E6F6F4',
+        //             className: 'text-[#006355] border-[#00A38C] border-l-2',
+        //             icon: false
+        //         },
+        //         {
+        //             type: 'error',
+        //             background: '#FCEAEA',
+        //             className: 'text-[#891E1E] border-[#E03131] border-l-2',
+        //             icon: false
+        //         },
+        //         {
+        //             type: 'warning',
+        //             background: '#fed7aa',
+        //             className: 'text-[#5E4702] border-[#FFC107] border-l-2',
+        //             icon: false
+        //         },
+        //         {
+        //             type: 'info',
+        //             background: '#E9F3FD',
+        //             className: 'text-[#15548C] border-[#228AE6] border-l-2',
+        //             icon: false
+        //         }
+        //     ]
+        // })
     }
 
     init() {
@@ -89,17 +89,17 @@ class Helium {
     }
 
     _notif() {
-        [].forEach.call(document.querySelectorAll('[data-notif]'), (el) => {
-            const type = el.dataset.notif
-            const content = el.innerHTML
-            // type: info, error, warning, success
-            this.notif.open({
-                type: type,
-                message: content
-            })
+        // [].forEach.call(document.querySelectorAll('[data-notif]'), (el) => {
+        //     const type = el.dataset.notif
+        //     const content = el.innerHTML
+        //     // type: info, error, warning, success
+        //     this.notif.open({
+        //         type: type,
+        //         message: content
+        //     })
 
-            el.style.display = 'none'
-        })
+        //     el.style.display = 'none'
+        // })
     }
 
     _filter() {

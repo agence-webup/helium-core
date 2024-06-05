@@ -21,6 +21,8 @@ class HeliumServiceProvider extends ServiceProvider
         $this->bootConfig();
         $this->bootMigrations();
         $this->bootAssets();
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/auth.php');
     }
 
     public function register()
@@ -50,6 +52,7 @@ class HeliumServiceProvider extends ServiceProvider
 
     private function bootAssets()
     {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'hui');
         $this->publishes([
             __DIR__.'/../resources/js' => resource_path('js/vendor/helium'),
             __DIR__.'/../resources/css' => resource_path('css/vendor/helium'),

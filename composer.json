@@ -20,7 +20,8 @@
         "illuminate/contracts": "^11.8",
         "illuminate/support": "^11.8",
         "laravel/prompts": "^0.1",
-        "livewire/livewire": "^3.5"
+        "livewire/livewire": "^3.5",
+        "ryangjchandler/blade-tabler-icons": "^2.3"
     },
     "require-dev": {
         "orchestra/testbench": "^9.1",
