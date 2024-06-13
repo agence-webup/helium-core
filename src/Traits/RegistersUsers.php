@@ -1,6 +1,6 @@
 <?php
 
-namespace Webup\HeliumCore\Traits;
+namespace Webup\Helium\Traits;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;

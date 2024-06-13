@@ -28,6 +28,6 @@ class User extends Authenticatable
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->setTable(config('helium.users.table'));
+        $this->setTable(config('helium.database.users-table'));
     }
 }

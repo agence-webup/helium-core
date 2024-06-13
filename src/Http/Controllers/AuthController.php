@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Webup\Helium\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Webup\HeliumCore\Traits\AuthenticatesUsers;
+use Webup\Helium\Traits\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
@@ -12,16 +12,16 @@ class AuthController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('admin');
+        return Auth::guard(config('helium.auth.guard-name'));
     }
 
     public function showLoginForm()
     {
-        return view('admin.admin_user.login');
+        return view('hui::pages.login');
     }
 
     public function redirectPath()
     {
-        return route('admin.admin_user.index');
+        return route('helium::dashboard');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Webup\HeliumCore\Traits;
+namespace Webup\Helium\Traits;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
