@@ -33,5 +33,5 @@ Route::middleware(Authenticate::using(config('helium.auth.guard-name')))->group(
         Route::delete('/{user}', 'destroy')->name('destroy');
     });
 
-    Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::get('settings', [SettingController::class, 'index'])->name('setting.index');
 });

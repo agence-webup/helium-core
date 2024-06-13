@@ -6,6 +6,8 @@ use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Webup\Helium\Livewire\UserTable;
 use Webup\Helium\Models\User;
 
 class HeliumServiceProvider extends ServiceProvider
@@ -24,6 +26,8 @@ class HeliumServiceProvider extends ServiceProvider
         $this->bootConfig();
         $this->bootMigrations();
         $this->bootAssets();
+
+        Livewire::component('helium::user-table', UserTable::class);
 
         $this->bootRoutes();
 
