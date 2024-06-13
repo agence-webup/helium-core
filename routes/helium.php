@@ -15,7 +15,7 @@ Route::middleware(RedirectIfAuthenticated::using(config('helium.auth.guard-name'
 });
 
 Route::middleware(Authenticate::using(config('helium.auth.guard-name')))->group(function () {
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/', function () {
         return 'helium dashboard';

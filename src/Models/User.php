@@ -30,4 +30,11 @@ class User extends Authenticatable
         parent::__construct($attributes);
         $this->setTable(config('helium.database.users-table'));
     }
+
+    public function getInitialsAttribute(): string
+    {
+        return collect(explode(' ', $this->name))
+            ->map(fn ($word) => strtoupper($word[0]))
+            ->join('');
+    }
 }

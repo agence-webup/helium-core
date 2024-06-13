@@ -16,6 +16,7 @@
           content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible"
           content="ie=edge">
+
     @vite('resources/css/vendor/helium/app.css')
     {{ $css }}
     {{ $cssStack }}
@@ -41,6 +42,12 @@
             </div>
         </div>
     </main>
+
+    <form id="logout-form"
+          action="{{ route('helium::logout') }}"
+          method="post">
+        @csrf
+    </form>
 
     @vite('resources/js/vendor/helium/app.js')
     {{ $js }}
