@@ -13,7 +13,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('helium::pages.user.index');
+        return view('helium::pages.user.index', [
+            'users' => User::all(),
+        ]);
     }
 
     public function create()
