@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Webup\Helium\Http\Controllers\AuthController;
+use Webup\Helium\Http\Controllers\SettingController;
 use Webup\Helium\Http\Controllers\UserController;
 use Webup\Helium\Http\Middleware\Authenticate;
 use Webup\Helium\Http\Middleware\RedirectIfAuthenticated;
@@ -31,4 +32,6 @@ Route::middleware(Authenticate::using(config('helium.auth.guard-name')))->group(
 
         Route::delete('/{user}', 'destroy')->name('destroy');
     });
+
+    Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
 });

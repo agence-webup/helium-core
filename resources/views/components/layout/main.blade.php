@@ -17,6 +17,7 @@
     <meta http-equiv="X-UA-Compatible"
           content="ie=edge">
 
+    @livewireStyles
     @vite('resources/css/vendor/helium/app.css')
     {{ $css }}
     {{ $cssStack }}
@@ -49,6 +50,7 @@
         @csrf
     </form>
 
+    @livewireScripts
     @vite('resources/js/vendor/helium/app.js')
     {{ $js }}
     {{ $jsStack }}

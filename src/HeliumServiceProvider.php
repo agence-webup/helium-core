@@ -33,6 +33,7 @@ class HeliumServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('helium', fn () => new Helium);
+        $this->app->bind('setting', fn () => new SettingManager);
     }
 
     /*
