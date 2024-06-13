@@ -1,10 +1,10 @@
 @props([
     'title' => 'Helium',
-    'css',
-    'cssStack',
-    'topbar',
-    'js',
-    'jsStack',
+    'css' => null,
+    'cssStack' => null,
+    'topbar' => null,
+    'js' => null,
+    'jsStack' => null,
 ])
 
 <!DOCTYPE html>
@@ -27,11 +27,11 @@
     <main class="flex">
         <div class="fixed inset-y-0 left-0 w-64 overflow-auto border-r border-[#E1E6EA] bg-white pb-4 pt-5">
             <div class="flex flex-shrink-0 flex-grow flex-col px-3 pb-[70px]">
-                <x-hui::layout.element.icon class="mb-5 w-10" />
-                <x-hui::menu />
+                <x-helium::layout.element.icon class="mb-5 w-10" />
+                <x-helium::menu />
             </div>
             <div class="fixed bottom-0 w-64 border-r border-[#E1E6EA] bg-white">
-                <x-hui::layout.element.profil />
+                <x-helium::layout.element.profil />
             </div>
         </div>
         <div class="ml-[16rem] grow">

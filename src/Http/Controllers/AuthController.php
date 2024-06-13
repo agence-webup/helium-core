@@ -17,7 +17,7 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('hui::pages.login');
+        return view('helium::pages.login');
     }
 
     public function redirectPath()

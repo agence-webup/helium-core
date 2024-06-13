@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Webup\Helium\Http\Controllers\AuthController;
+use Webup\Helium\Http\Controllers\UserController;
 use Webup\Helium\Http\Middleware\Authenticate;
 use Webup\Helium\Http\Middleware\RedirectIfAuthenticated;
 
@@ -19,4 +20,15 @@ Route::middleware(Authenticate::using(config('helium.auth.guard-name')))->group(
     Route::get('/', function () {
         return 'helium dashboard';
     })->name('dashboard');
+
+    Route::prefix('users')->as('user.')->controller(UserController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+
+        Route::get('/{user}/edit', 'edit')->name('edit');
+        Route::post('/{user}', 'update')->name('update');
+
+        Route::delete('/{user}', 'destroy')->name('destroy');
+    });
 });

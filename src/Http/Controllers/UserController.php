@@ -1,38 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Webup\Helium\Http\Controllers;
 
-use App\Models\Admin\AdminUser;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Webup\Helium\Models\User;
 
-class AdminUserController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.admin_user.index');
+        return view('helium::pages.user.index');
     }
 
     public function create()
     {
-        return view('admin.admin_user.create');
+        return view('helium::pages.user.create');
     }
 
     public function edit($id)
     {
-        $user = Adminuser::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return view('admin.admin_user.edit', compact('user'));
+        return view('helium::pages.user.edit', compact('user'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:admin_users,email',
+            'email' => ['required', 'email', Rule::unique(config('helium.database.users-table'), 'email')],
             'password' => [
                 'required',
                 Password::min(8)
@@ -43,10 +43,9 @@ class AdminUserController extends Controller
             ],
         ]);
 
-        $data['password'] = bcrypt(Str::random(16));
-        AdminUser::create($data);
+        User::create($data);
 
-        return redirect()->route('admin.admin_user.index');
+        return redirect()->route('helium::user.index');
     }
 
     public function update(Request $request, $id)
@@ -68,17 +67,17 @@ class AdminUserController extends Controller
             unset($data['password']);
         }
 
-        $user = AdminUser::findOrFail($id);
-        $user->update($data);
+        $user = User::findOrFail($id);
+        $user->fill($data);
         $user->save();
 
-        return redirect()->route('admin.admin_user.show', $user->id);
+        return redirect()->route('helium::user.show', $user->id);
     }
 
     public function destroy($id)
     {
-        AdminUser::findOrFail($id)->delete();
+        User::findOrFail($id)->delete();
 
-        return redirect()->route('admin.admin_user.index');
+        return redirect()->route('helium::user.index');
     }
 }

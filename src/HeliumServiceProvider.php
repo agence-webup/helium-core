@@ -60,7 +60,7 @@ class HeliumServiceProvider extends ServiceProvider
 
     protected function bootAssets()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'hui');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'helium');
 
         $this->publishes([
             __DIR__.'/../resources/js' => resource_path('js/vendor/helium'),
