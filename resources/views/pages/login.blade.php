@@ -1,23 +1,19 @@
-@extends('hui::layout.auth')
-
-@section('content')
+<x-hui::layout.auth title="Log in">
     <form action="{{ route('helium::postLogin') }}"
           method="post">
         @csrf
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email"
-                   name="email"
-                   id="email"
-                   required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password"
-                   name="password"
-                   id="password"
-                   required>
-        </div>
-        <button type="submit">Login</button>
+        <x-hui::box>
+            <x-hui::form.input label="Email"
+                               type="email"
+                               name="email"
+                               required />
+
+            <x-hui::form.input label="Password"
+                               type="password"
+                               name="password"
+                               required />
+            <x-hui::button label="Login"
+                           class="mt-3 w-full" />
+        </x-hui::box>
     </form>
-@endsection
+</x-hui::layout.auth>
