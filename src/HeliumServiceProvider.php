@@ -3,7 +3,6 @@
 namespace Webup\Helium;
 
 use Illuminate\Foundation\Console\AboutCommand;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -80,9 +79,7 @@ class HeliumServiceProvider extends ServiceProvider
             __DIR__.'/../routes/helium.php' => base_path('routes/helium.php'),
         ], 'helium');
 
-        if (! App::runningInConsole()) {
-            $this->loadRoutesFrom(__DIR__.'/../routes/_helium.php');
-        }
+        $this->loadRoutesFrom(__DIR__.'/../routes/_helium.php');
     }
 
     protected function bootAuth()
