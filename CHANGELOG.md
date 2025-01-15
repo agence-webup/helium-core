@@ -2,6 +2,10 @@
 
 All notable changes to `helium-core` will be documented in this file.
 
+## v0.2.2 - 2025-01-15
+
+**Full Changelog**: https://github.com/agence-webup/helium-core/compare/v0.2.1...v0.2.2
+
 ## v0.2.1 - 2024-10-07
 
 **Full Changelog**: https://github.com/agence-webup/helium-core/compare/v0.2.0...v0.2.1
