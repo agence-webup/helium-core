@@ -37,9 +37,7 @@ class HeliumServiceProvider extends ServiceProvider
         $this->bootAuth();
     }
 
-    public function register()
-    {
-    }
+    public function register() {}
 
     /*
     |--------------------------------------------------------------------------
