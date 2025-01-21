@@ -1,19 +1,11 @@
-<x-helium::layout.auth title="Log in">
-    <form action="{{ route('helium::postLogin') }}"
-          method="post">
+<x-helium-core::layout.auth title="Log in">
+    <form action="{{ Helium::route('postLogin') }}" method="post">
         @csrf
-        <x-helium::box>
-            <x-helium::form.input label="Email"
-                                  type="email"
-                                  name="email"
-                                  required />
+        <x-helium-core::box>
+            <x-helium-core::form.input label="Email" type="email" name="email" required />
 
-            <x-helium::form.input label="Password"
-                                  type="password"
-                                  name="password"
-                                  required />
-            <x-helium::button label="Login"
-                              class="mt-3 w-full" />
-        </x-helium::box>
+            <x-helium-core::form.input label="Password" type="password" name="password" required />
+            <x-helium-core::button label="Login" class="mt-3 w-full" />
+        </x-helium-core::box>
     </form>
-</x-helium::layout.auth>
+</x-helium-core::layout.auth>

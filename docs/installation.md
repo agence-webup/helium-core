@@ -24,9 +24,27 @@ since it's the default for any new Laravel project.*
 composer require webup/helium-core
 # or, if you live on the edge:
 composer require webup/helium-core:@dev
+```
+
+### Publishing and customizing the default configuration
+
+`config/helium-core.php` is published along with all the other assets.
+
+You should check to see if the default values suit your requirements.
+Most likely, the `user` keyword is already used as your main authentication label.
+
+Helium allows you to change the database table names, along with the name
+of the guard and auth provider that will be automatically declared
+
+```sh
+# publish the configuration first
+artisan vendor:publish --tag=helium-core-config
+
+# /!\ now is the time to configure the package /!\
+nano config/helium-core.php
 
 # publish all needed files
-artisan vendor:publish --tag=helium
+artisan vendor:publish --tag=helium-core
 ```
 
 ### Setting up the frontend assets build
@@ -35,8 +53,8 @@ In order to unlock the full power of tailwind and helium's customizability,
 the package publishes its frontend assets to your application.
 
 The frontend assets are published to:
-- `resources/js/vendor/helium/`
-- `resources/css/vendor/helium/`
+- `resources/js/vendor/helium-core/`
+- `resources/css/vendor/helium-core/`
 
 You can now update your `vite.config.js` to build the new js/css files:
 ```js
@@ -48,24 +66,14 @@ export default defineConfig({
                 'resources/js/app.js',
 
                 // add the helium assets to the build
-                'resources/css/vendor/helium/app.css',
-                'resources/js/vendor/helium/app.js',
+                'resources/css/vendor/helium-core/app.css',
+                'resources/js/vendor/helium-core/app.js',
             ],
             refresh: true,
         }),
     ],
 });
 ```
-
-### Checking the default configuration
-
-`config/helium.php` is published along with all the other assets.
-
-You should check to see if the default values suit your requirements.
-Most likely, the `user` keyword is already used as your main authentication label.
-
-Helium allows you to change the database table names, along with the name
-of the guard and provider that will be automatically declared.
 
 ### Running the migrations
 

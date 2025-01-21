@@ -12,13 +12,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible"
-          content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     @livewireStyles
-    @vite('resources/css/vendor/helium/app.css')
+    @vite('resources/css/vendor/helium-core/app.css')
     {{ $css }}
     {{ $cssStack }}
 
@@ -29,11 +27,11 @@
     <main class="flex">
         <div class="fixed inset-y-0 left-0 w-64 overflow-auto border-r border-[#E1E6EA] bg-white pb-4 pt-5">
             <div class="flex flex-shrink-0 flex-grow flex-col px-3 pb-[70px]">
-                <x-helium::layout.element.icon class="mb-5 w-10" />
-                <x-helium::menu />
+                <x-helium-core::layout.element.icon class="mb-5 w-10" />
+                <x-helium-core::menu />
             </div>
             <div class="fixed bottom-0 w-64 border-r border-[#E1E6EA] bg-white">
-                <x-helium::layout.element.profil />
+                <x-helium-core::layout.element.profil />
             </div>
         </div>
         <div class="ml-[16rem] grow">
@@ -44,14 +42,12 @@
         </div>
     </main>
 
-    <form id="logout-form"
-          action="{{ route('helium::logout') }}"
-          method="post">
+    <form id="logout-form" action="{{ Helium::route('logout') }}" method="post">
         @csrf
     </form>
 
     @livewireScripts
-    @vite('resources/js/vendor/helium/app.js')
+    @vite('resources/js/vendor/helium-core/app.js')
     {{ $js }}
     {{ $jsStack }}
 </body>

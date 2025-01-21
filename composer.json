@@ -29,8 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Webup\\Helium\\": "src/",
-            "Webup\\Helium\\Database\\Factories\\": "database/factories/"
+            "Webup\\Helium\\": "src/"
         }
     },
     "autoload-dev": {
@@ -57,7 +56,8 @@
                 "Webup\\Helium\\HeliumServiceProvider"
             ],
             "aliases": {
-                "Helium": "Webup\\Helium\\Facades\\Helium"
+                "Helium": "Webup\\Helium\\Facades\\Helium",
+                "Setting": "Webup\\Helium\\Facades\\Setting"
             }
         }
     },
