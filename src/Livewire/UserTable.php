@@ -17,6 +17,6 @@ class UserTable extends Component
 
     public function render()
     {
-        return view('helium::livewire.user-table');
+        return view('helium-core::livewire.user-table');
     }
 }

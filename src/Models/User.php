@@ -28,7 +28,7 @@ class User extends Authenticatable
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->setTable(config('helium.database.users-table'));
+        $this->setTable(config('helium-core.database.users-table'));
     }
 
     public function getInitialsAttribute(): string

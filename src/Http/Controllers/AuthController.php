@@ -12,12 +12,12 @@ class AuthController extends Controller
 
     protected function guard()
     {
-        return Auth::guard(config('helium.auth.guard-name'));
+        return Auth::guard(config('helium-core.auth.guard-name'));
     }
 
     public function showLoginForm()
     {
-        return view('helium::pages.login');
+        return view('helium-core::pages.login');
     }
 
     public function redirectPath()

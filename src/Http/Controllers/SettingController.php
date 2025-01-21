@@ -9,7 +9,7 @@ class SettingController extends Controller
 {
     public function index()
     {
-        return view('helium::pages.setting.index', [
+        return view('helium-core::pages.setting.index', [
             'settings' => Setting::all(),
         ]);
     }

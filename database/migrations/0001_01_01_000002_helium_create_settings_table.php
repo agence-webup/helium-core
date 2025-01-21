@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create(config('helium.database.settings-table'), function (Blueprint $table) {
+        Schema::create(config('helium-core.database.settings-table'), function (Blueprint $table) {
             $table->id();
             $table->string('key')->unique();
             $table->string('value')->nullable();
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists(config('helium.database.settings-table'));
+        Schema::dropIfExists(config('helium-core.database.settings-table'));
     }
 };

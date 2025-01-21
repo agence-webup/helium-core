@@ -9,75 +9,7 @@ Laravel Admin made with Helium UI
 
 ## Installation
 
-You can install the package via composer:
-
-```bash
-composer require webup/helium-core
-```
-
-You should publish config and components
-```bash
-sail artisan vendor:publish
-```
-
-You can publish features as you go with:
-
-```bash
-php artisan helium:publish
-```
-
-Publishing a feature will copy paste every file associated with it.
-This includes:
-- config, controllers, models
-- migrations, routes
-- js, css
-- x-components, livewire components, blade views
-
-## :warning: Configuration :warning:
-
-Make sure to configure this package to suit your preferences before starting to publish anything.
-
-## Features
-
-### Admin User management
-
-This feature packs an AdminUser model along with its migration,
-a default `{email: 'admin', password: 'password'}` entry,
-and CRUD routes + pages.
-
-```bash
-php artisan helium:publish
-> User
-```
-
-Don't forget to add the guard and provider to `config/auth.php`:
-```php
-<?php
-
-return [
-    ...
-    'guards' => [
-        ...
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admin_users',
-        ],
-    ],
-
-    'providers' => [
-        ...
-        'admin_users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin\AdminUser::class,
-        ],
-    ],
-];
-```
-
-### Datatable
-
-[doc](docs/datatable.md)
-
+See [installation instructions](./docs/installation.md).
 ## Testing
 
 ```bash
