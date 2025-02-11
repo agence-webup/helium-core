@@ -8,7 +8,7 @@ use Webup\Helium\Models\User;
 
 class HeliumCore
 {
-    public function user(): ?mixed
+    public function user(): mixed
     {
         return auth(config('helium-core.auth.guard-name'))->user();
     }
