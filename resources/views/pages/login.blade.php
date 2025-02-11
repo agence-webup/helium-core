@@ -1,5 +1,5 @@
 <x-helium-core::layout.auth title="Log in">
-    <form action="{{ Helium::route('postLogin') }}" method="post">
+    <form action="{{ HeliumCore::route('postLogin') }}" method="post">
         @csrf
         <x-helium-core::box>
             <x-helium-core::form.input label="Email" type="email" name="email" required />

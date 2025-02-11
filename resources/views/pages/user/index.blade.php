@@ -2,7 +2,7 @@
     <x-slot:topbar>
         <x-helium-core::layout.element.topbar title="Users">
             <x-slot:actions>
-                <x-helium-core::button :href="Helium::route('user.create')" label="Create" />
+                <x-helium-core::button :href="HeliumCore::route('user.create')" label="Create" />
             </x-slot:actions>
         </x-helium-core::layout.element.topbar>
     </x-slot:topbar>

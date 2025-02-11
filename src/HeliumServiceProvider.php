@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Webup\Helium\Livewire\UserTable;
-use Webup\Helium\Models\User;
 
 class HeliumServiceProvider extends ServiceProvider
 {
@@ -37,7 +36,10 @@ class HeliumServiceProvider extends ServiceProvider
         $this->bootAuth();
     }
 
-    public function register() {}
+    public function register()
+    {
+        $this->app->bind('helium-core', fn () => new Helium);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -83,10 +85,14 @@ class HeliumServiceProvider extends ServiceProvider
 
     protected function bootAuth()
     {
+        if (! Config::get('helium-core.auth.enabled')) {
+            return;
+        }
+
         $provider = Config::get('helium-core.auth.provider-name');
         Config::set("auth.providers.$provider", [
             'driver' => 'eloquent',
-            'model' => User::class,
+            'model' => Config::get('helium-core.models.user'),
         ]);
 
         $guard = Config::get('helium-core.auth.guard-name');

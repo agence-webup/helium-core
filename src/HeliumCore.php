@@ -2,17 +2,20 @@
 
 namespace Webup\Helium;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Webup\Helium\Models\User;
 
-class Helium
+class HeliumCore
 {
-    public function user(): ?User
+    public function user(): ?mixed
     {
-        /** @var User */
-        $user = auth(config('helium-core.auth.guard-name'))->user();
+        return auth(config('helium-core.auth.guard-name'))->user();
+    }
 
-        return $user;
+    public function userClass(): string
+    {
+        return Config::get('helium-core.models.user', User::class);
     }
 
     public function route(string $name, mixed $parameters = [], bool $absolute = true): string

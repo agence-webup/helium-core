@@ -56,7 +56,7 @@
                 "Webup\\Helium\\HeliumServiceProvider"
             ],
             "aliases": {
-                "Helium": "Webup\\Helium\\Facades\\Helium",
+                "HeliumCore": "Webup\\Helium\\Facades\\HeliumCore",
                 "Setting": "Webup\\Helium\\Facades\\Setting"
             }
         }

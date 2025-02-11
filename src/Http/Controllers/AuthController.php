@@ -4,6 +4,7 @@ namespace Webup\Helium\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Webup\Helium\Facades\HeliumCore;
 use Webup\Helium\Traits\AuthenticatesUsers;
 
 class AuthController extends Controller
@@ -22,6 +23,6 @@ class AuthController extends Controller
 
     public function redirectPath()
     {
-        return route('helium::dashboard');
+        return HeliumCore::route('dashboard');
     }
 }

@@ -42,7 +42,7 @@
         </div>
     </main>
 
-    <form id="logout-form" action="{{ Helium::route('logout') }}" method="post">
+    <form id="logout-form" action="{{ HeliumCore::route('logout') }}" method="post">
         @csrf
     </form>
 
