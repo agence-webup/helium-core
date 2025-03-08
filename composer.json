@@ -21,7 +21,7 @@
         "illuminate/support": "11.*|12.*",
         "laravel/prompts": "^0.3",
         "livewire/livewire": "^3",
-        "ryangjchandler/blade-tabler-icons": "^2.3"
+        "secondnetwork/blade-tabler-icons": "^3"
     },
     "require-dev": {
         "orchestra/testbench": "^9.1",
