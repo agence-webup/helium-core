@@ -19,7 +19,7 @@
         "php": "^8.1",
         "illuminate/contracts": "11.*|12.*",
         "illuminate/support": "11.*|12.*",
-        "laravel/prompts": "^0.1",
+        "laravel/prompts": "^0.3",
         "livewire/livewire": "^3",
         "ryangjchandler/blade-tabler-icons": "^2.3"
     },
