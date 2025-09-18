@@ -9,7 +9,7 @@
         </thead>
         <tbody>
             @foreach ($this->users as $user)
-                <tr data-link="{{ route('helium::user.edit', $user->id) }}">
+                <tr data-link="{{ HeliumCore::route('user.edit', $user->id) }}">
                     <td class="text-right">{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>

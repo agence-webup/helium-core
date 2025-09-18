@@ -7,34 +7,37 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
-use Webup\Helium\Models\User;
+use Webup\Helium\Facades\HeliumCore;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('helium::pages.user.index', [
-            'users' => User::all(),
+        $class = HeliumCore::userClass();
+
+        return view('helium-core::pages.user.index', [
+            'users' => $class::all(),
         ]);
     }
 
     public function create()
     {
-        return view('helium::pages.user.create');
+        return view('helium-core::pages.user.create');
     }
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $class = HeliumCore::userClass();
+        $user = $class::findOrFail($id);
 
-        return view('helium::pages.user.edit', compact('user'));
+        return view('helium-core::pages.user.edit', compact('user'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => ['required', 'email', Rule::unique(config('helium.database.users-table'), 'email')],
+            'email' => ['required', 'email', Rule::unique(config('helium-core.database.users-table'), 'email')],
             'password' => [
                 'required',
                 Password::min(8)
@@ -45,9 +48,10 @@ class UserController extends Controller
             ],
         ]);
 
-        User::create($data);
+        $class = HeliumCore::userClass();
+        $class::create($data);
 
-        return redirect()->route('helium::user.index');
+        return redirect()->to(HeliumCore::route('user.index'));
     }
 
     public function update(Request $request, $id)
@@ -69,17 +73,20 @@ class UserController extends Controller
             unset($data['password']);
         }
 
-        $user = User::findOrFail($id);
+        $class = HeliumCore::userClass();
+        $user = $class::findOrFail($id);
+
         $user->fill($data);
         $user->save();
 
-        return redirect()->route('helium::user.show', $user->id);
+        return redirect()->to(HeliumCore::route('user.show', $user->id));
     }
 
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
+        $class = HeliumCore::userClass();
+        $class::findOrFail($id)->delete();
 
-        return redirect()->route('helium::user.index');
+        return redirect()->to(HeliumCore::route('user.index'));
     }
 }

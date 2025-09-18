@@ -3,17 +3,17 @@ name: tests
 on:
   push:
     paths:
-      - 'app/**.php'
-      - 'config/**.php'
-      - 'database/**.php'
-      - 'routes/**.php'
+      - "app/**.php"
+      - "config/**.php"
+      - "database/**.php"
+      - "routes/**.php"
     branches: [main]
   pull_request:
     paths:
-      - 'app/**.php'
-      - 'config/**.php'
-      - 'database/**.php'
-      - 'routes/**.php'
+      - "app/**.php"
+      - "config/**.php"
+      - "database/**.php"
+      - "routes/**.php"
     branches: [main]
 
 jobs:
@@ -23,12 +23,12 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        php: [8.2, 8.1]
+        php: [8.2]
         laravel: [10.*]
         stability: [prefer-stable]
         include:
-          - laravel: 10.*
-            testbench: 8.*
+          - laravel: 11.*
+            testbench: 9.*
             carbon: ^2.63
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}

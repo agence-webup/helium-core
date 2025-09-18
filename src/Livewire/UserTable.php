@@ -4,7 +4,7 @@ namespace Webup\Helium\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use Webup\Helium\Models\User;
+use Webup\Helium\Facades\HeliumCore;
 
 class UserTable extends Component
 {
@@ -12,11 +12,13 @@ class UserTable extends Component
 
     public function getUsersProperty()
     {
-        return User::paginate(10);
+        $class = HeliumCore::userClass();
+
+        return $class::paginate(10);
     }
 
     public function render()
     {
-        return view('helium::livewire.user-table');
+        return view('helium-core::livewire.user-table');
     }
 }

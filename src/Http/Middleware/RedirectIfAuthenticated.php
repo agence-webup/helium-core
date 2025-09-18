@@ -4,6 +4,7 @@ namespace Webup\Helium\Http\Middleware;
 
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated as GuestMiddleware;
 use Illuminate\Http\Request;
+use Webup\Helium\Facades\HeliumCore;
 
 class RedirectIfAuthenticated extends GuestMiddleware
 {
@@ -14,6 +15,6 @@ class RedirectIfAuthenticated extends GuestMiddleware
 
     protected function redirectTo(Request $request): ?string
     {
-        return route('helium::dashboard');
+        return HeliumCore::route('dashboard');
     }
 }

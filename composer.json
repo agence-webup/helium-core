@@ -17,11 +17,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "illuminate/contracts": "^11",
-        "illuminate/support": "^11",
-        "laravel/prompts": "^0.1",
+        "illuminate/contracts": "11.*|12.*",
+        "illuminate/support": "11.*|12.*",
+        "laravel/prompts": "^0.3",
         "livewire/livewire": "^3",
-        "ryangjchandler/blade-tabler-icons": "^2.3"
+        "secondnetwork/blade-tabler-icons": "^3"
     },
     "require-dev": {
         "orchestra/testbench": "^9.1",
@@ -29,8 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Webup\\Helium\\": "src/",
-            "Webup\\Helium\\Database\\Factories\\": "database/factories/"
+            "Webup\\Helium\\": "src/"
         }
     },
     "autoload-dev": {
@@ -57,7 +56,8 @@
                 "Webup\\Helium\\HeliumServiceProvider"
             ],
             "aliases": {
-                "Helium": "Webup\\Helium\\Facades\\Helium"
+                "HeliumCore": "Webup\\Helium\\Facades\\HeliumCore",
+                "Setting": "Webup\\Helium\\Facades\\Setting"
             }
         }
     },

@@ -1,8 +1,8 @@
-<x-helium::layout.main title="Settings">
+<x-helium-core::layout.main title="Settings">
     <x-slot:topbar>
-        <x-helium::layout.element.topbar title="Settings" />
+        <x-helium-core::layout.element.topbar title="Settings" />
     </x-slot:topbar>
-    <x-helium::box>
+    <x-helium-core::box>
         <table class="table">
             <thead>
                 <tr>
@@ -20,5 +20,5 @@
                 @endforeach
             </tbody>
         </table>
-    </x-helium::box>
-</x-helium::layout.main>
+    </x-helium-core::box>
+</x-helium-core::layout.main>

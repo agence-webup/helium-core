@@ -22,6 +22,6 @@ class Setting extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->setTable(config('helium.database.settings-table'));
+        $this->setTable(config('helium-core.database.settings-table'));
     }
 }
